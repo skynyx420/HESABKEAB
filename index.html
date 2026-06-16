@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حسابیار — سیستم حسابداری کافه</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+:root{--bg:#0f1117;--s1:#161b27;--s2:#1d2436;--s3:#242b3d;--bd:#2a3149;--bd2:#364060;--tx:#e8eaf0;--tx2:#8b92a8;--tx3:#555e78;--blue:#4f8ef7;--bl:rgba(79,142,247,.15);--green:#3ecf8e;--gl:rgba(62,207,142,.15);--red:#f16063;--rl:rgba(241,96,99,.15);--amber:#f5a623;--al:rgba(245,166,35,.15);--purple:#a78bfa;--pl:rgba(167,139,250,.15);--teal:#2dd4bf;--tl:rgba(45,212,191,.15);--f:'Vazirmatn',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f);font-size:13px;background:var(--bg);color:var(--tx);height:100vh;overflow:hidden;display:flex;flex-direction:column}
+.nav{height:50px;background:var(--s1);border-bottom:1px solid var(--bd);display:flex;align-items:center;padding:0 16px;gap:4px;flex-shrink:0;overflow-x:auto}
+.nav::-webkit-scrollbar{display:none}
+.logo{display:flex;align-items:center;gap:9px;margin-left:18px;flex-shrink:0}
+.logo-i{width:28px;height:28px;background:linear-gradient(135deg,#4f8ef7,#a78bfa);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.logo-t{font-size:14px;font-weight:700;color:var(--tx)}.logo-t b{color:var(--blue)}
+.nl{padding:6px 12px;border-radius:7px;font-size:12px;font-weight:500;color:var(--tx2);cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;border:none;background:transparent;font-family:var(--f);text-decoration:none;transition:all .12s}
+.nl:hover{background:var(--s3);color:var(--tx)}.nl.on{background:var(--bl);color:var(--blue)}.nl i{font-size:14px}
+.nav-r{margin-right:auto;display:flex;gap:8px;align-items:center;flex-shrink:0}
+.badge{padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600}
+.bok{background:var(--gl);color:var(--green)}.berr{background:var(--rl);color:var(--red)}.bw{background:var(--al);color:var(--amber)}
+.uchip{display:flex;align-items:center;gap:6px;padding:3px 10px;border-radius:20px;background:var(--s3);font-size:11px;color:var(--tx2)}
+.wrap{flex:1;display:flex;overflow:hidden}
+.tabbar{display:flex;align-items:center;gap:3px;background:var(--bg);border-bottom:1px solid var(--bd);padding:5px 10px;overflow-x:auto;flex-shrink:0;min-height:38px}
+.tabbar::-webkit-scrollbar{height:0}
+.tab{display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:7px 7px 0 0;font-size:11px;font-weight:500;color:var(--tx2);cursor:pointer;background:var(--s1);border:1px solid var(--bd);border-bottom:none;white-space:nowrap;transition:all .12s}
+.tab:hover{background:var(--s2);color:var(--tx)}
+.tab.on{background:var(--bl);color:var(--blue);border-color:var(--blue)}
+.tab i.tab-ic{font-size:13px}
+.tab .tab-x{font-size:13px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;border-radius:4px;opacity:.6}
+.tab .tab-x:hover{background:var(--rl);color:var(--red);opacity:1}
+.tab-empty{font-size:11px;color:var(--tx3);padding:5px 8px}
+.sb{width:215px;background:var(--s1);border-left:1px solid var(--bd);padding:10px 8px;flex-shrink:0;overflow-y:auto}
+.sb::-webkit-scrollbar{width:4px}.sb::-webkit-scrollbar-thumb{background:var(--bd);border-radius:4px}
+.sg{font-size:9px;font-weight:700;color:var(--tx3);padding:10px 8px 4px;text-transform:uppercase;letter-spacing:.6px}
+.si{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:8px;font-size:12px;font-weight:500;color:var(--tx2);cursor:pointer;margin-bottom:1px;width:100%;border:none;background:transparent;font-family:var(--f);transition:all .12s;text-align:right}
+.si:hover{background:var(--s3);color:var(--tx)}.si.on{background:var(--bl);color:var(--blue)}.si i{font-size:15px;flex-shrink:0}
+.si.hidden{display:none}
+.main{flex:1;overflow-y:auto;padding:16px}
+.main::-webkit-scrollbar{width:5px}.main::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
+.pg{display:none}.pg.on{display:block;animation:fi .15s ease}
+@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.ph{margin-bottom:14px}.ph-t{font-size:18px;font-weight:700;margin-bottom:3px}.ph-s{font-size:12px;color:var(--tx2)}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+.card:last-child{margin-bottom:0}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.ct{font-size:13px;font-weight:600}
+.btn{padding:6px 13px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--bd2);background:var(--s3);color:var(--tx);font-family:var(--f);transition:all .12s;white-space:nowrap}
+.btn:hover{background:var(--s2)}.btn:active{transform:scale(.98)}.btn i{font-size:14px}
+.bp{background:var(--blue);color:#fff;border-color:var(--blue)}.bp:hover{opacity:.88}
+.bs{background:var(--green);color:#0f1117;border-color:var(--green)}.bs:hover{opacity:.88}
+.bpu{background:var(--purple);color:#fff;border-color:var(--purple)}.bpu:hover{opacity:.88}
+.bam{background:var(--amber);color:#0f1117;border-color:var(--amber)}.bam:hover{opacity:.88}
+.brd{background:var(--red);color:#fff;border-color:var(--red)}.brd:hover{opacity:.88}
+.bg{display:flex;gap:6px;flex-wrap:wrap}
+.tbl{overflow-x:auto;border-radius:10px;border:1px solid var(--bd)}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--s2)}
+th{font-size:10px;font-weight:700;color:var(--tx3);padding:9px 11px;border-bottom:1px solid var(--bd);white-space:nowrap;text-transform:uppercase;letter-spacing:.4px;text-align:right}
+td{padding:9px 11px;border-bottom:1px solid var(--bd);font-size:12px;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--s2)}
+.chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.cs{background:var(--gl);color:var(--green)}.cd{background:var(--rl);color:var(--red)}.cw{background:var(--al);color:var(--amber)}.ci{background:var(--bl);color:var(--blue)}.cp{background:var(--pl);color:var(--purple)}.ct2{background:var(--tl);color:var(--teal)}
+.fg{display:grid;gap:10px;margin-bottom:10px}
+.f2{grid-template-columns:1fr 1fr}.f3{grid-template-columns:1fr 1fr 1fr}.f4{grid-template-columns:1fr 1fr 1fr 1fr}
+.fl{display:flex;flex-direction:column;gap:4px}
+.fl label{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+.fl input,.fl select{padding:7px 11px;font-size:12px;border:1px solid var(--bd2);border-radius:8px;background:var(--s2);color:var(--tx);width:100%;font-family:var(--f)}
+.fl input:focus,.fl select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(79,142,247,.12)}
+.fl input::placeholder{color:var(--tx3)}
+.ro{background:var(--s3)!important;color:var(--tx2)!important}
+.tb{background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:11px 14px;margin-top:10px}
+.tr2{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;color:var(--tx2)}
+.tr2.fin{font-weight:700;color:var(--tx);font-size:13px;margin-top:6px;padding-top:6px;border-top:1px solid var(--bd)}
+.tr2.red{color:var(--red)}
+.cpill{font-family:monospace;font-size:10px;background:var(--s3);border:1px solid var(--bd);padding:2px 7px;border-radius:5px;color:var(--blue)}
+.mono{font-family:monospace;font-size:11px}
+.sbar{display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--bd2);border-radius:9px;background:var(--s2);margin-bottom:11px}
+.sbar i{font-size:14px;color:var(--tx3)}
+.sbar input{border:none;background:transparent;color:var(--tx);font-size:12px;flex:1;outline:none;font-family:var(--f)}
+.ib{background:var(--bl);border:1px solid rgba(79,142,247,.25);border-radius:9px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:var(--blue);line-height:1.8}
+.ib b{font-weight:700}
+.il{display:grid;gap:6px;align-items:center;margin-bottom:6px}
+.ii{padding:6px 9px;font-size:11px;border:1px solid var(--bd);border-radius:7px;background:var(--s2);color:var(--tx);font-family:var(--f)}
+.ii:focus{outline:none;border-color:var(--blue)}.ii.ro{background:var(--s3);color:var(--tx2)}
+.rb{border:none;background:none;color:var(--tx3);cursor:pointer;font-size:16px;padding:3px;border-radius:5px}
+.rb:hover{background:var(--rl);color:var(--red)}
+.empty{text-align:center;padding:30px;color:var(--tx3);font-size:12px}
+.empty i{font-size:32px;display:block;margin-bottom:10px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:9px 18px;border-radius:9px;font-size:12px;font-weight:600;z-index:999;color:#fff;font-family:var(--f)}
+.divider{height:1px;background:var(--bd);margin:12px 0}
+.met{background:var(--s1);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;position:relative;overflow:hidden}
+.met::before{content:'';position:absolute;top:0;right:0;left:0;height:2px}
+.met.blue::before{background:var(--blue)}.met.green::before{background:var(--green)}.met.red::before{background:var(--red)}.met.amber::before{background:var(--amber)}.met.purple::before{background:var(--purple)}
+.ml{font-size:10px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.mv{font-size:22px;font-weight:700;line-height:1}
+.ac-wrap{position:relative}
+.ac-dd{position:absolute;top:calc(100% + 4px);right:0;left:0;background:var(--s2);border:1px solid var(--bd2);border-radius:10px;box-shadow:0 12px 40px rgba(0,0,0,.5);z-index:200;max-height:220px;overflow-y:auto;display:none}
+.ac-dd.show{display:block}
+.ac-item{padding:9px 12px;font-size:12px;cursor:pointer;border-bottom:1px solid var(--bd)}
+.ac-item:last-child{border-bottom:none}.ac-item:hover{background:var(--s3)}
+.ac-code{font-family:monospace;font-size:10px;background:var(--s3);padding:2px 6px;border-radius:4px;color:var(--blue);margin-left:6px}
+/* LOGIN */
+.login-bg{position:fixed;inset:0;background:var(--bg);z-index:500;display:flex;align-items:center;justify-content:center}
+.login-card{background:var(--s1);border:1px solid var(--bd2);border-radius:16px;padding:32px;width:360px;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+.login-logo{width:52px;height:52px;background:linear-gradient(135deg,#4f8ef7,#a78bfa);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+.login-title{text-align:center;font-size:18px;font-weight:700;margin-bottom:4px}
+.login-title b{color:var(--blue)}
+.login-sub{text-align:center;font-size:12px;color:var(--tx2);margin-bottom:24px}
+.perm-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.perm-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--bd2);border-radius:8px;background:var(--s2);cursor:pointer;font-size:12px}
+.perm-item input{width:16px;height:16px;accent-color:var(--blue)}
+.perm-item.checked{border-color:var(--blue);background:var(--bl)}
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.mbg.open{display:flex}
+.modal{background:var(--s1);border:1px solid var(--bd2);border-radius:14px;padding:20px;width:560px;max-height:88vh;overflow-y:auto}
+.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.mt{font-size:14px;font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-bg" id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">☕</div>
+    <div class="login-title"><b>حساب</b>یار</div>
+    <div class="login-sub">سیستم حسابداری کافه و رستوران</div>
+    <div class="fl" style="margin-bottom:12px"><label>نام کاربری</label><input id="lg-user" placeholder="admin" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="fl" style="margin-bottom:18px"><label>رمز عبور</label><input type="password" id="lg-pass" placeholder="••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="btn bp" onclick="doLogin()" style="width:100%;justify-content:center;padding:9px"><i class="ti ti-login"></i>ورود</button>
+    <div id="lg-err" style="color:var(--red);font-size:11px;text-align:center;margin-top:12px;display:none"></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav" id="appnav" style="display:none">
+  <div class="logo"><div class="logo-i">☕</div><div class="logo-t"><b>حساب</b>یار</div></div>
+  <span class="nl on" style="cursor:default"><i class="ti ti-building-store"></i>سیستم حسابداری کافه</span>
+  <div class="nav-r">
+    <span class="uchip" id="uchip"><i class="ti ti-user"></i><span id="uname">—</span></span>
+    <span class="badge bw" id="cbadge">● اتصال...</span>
+    <button class="btn" onclick="logout()" style="padding:5px 10px"><i class="ti ti-logout"></i>خروج</button>
+  </div>
+</div>
+
+<div class="tabbar" id="tabbar" style="display:none"></div>
+
+<div class="wrap" id="appwrap" style="display:none">
+<div class="sb">
+  <div class="sg">داشبورد</div>
+  <button class="si on" data-perm="dashboard" onclick="gp('dash',this)"><i class="ti ti-layout-dashboard"></i>داشبورد</button>
+    <div class="sg">تعریفات پایه</div>
+  <button class="si" data-perm="def" onclick="gp('mat-groups',this)"><i class="ti ti-folder-filled"></i>گروه‌های مواد</button>
+  <button class="si" data-perm="def" onclick="gp('materials',this)"><i class="ti ti-leaf"></i>مواد اولیه</button>
+  <button class="si" data-perm="def" onclick="gp('prod-groups',this)"><i class="ti ti-folder-filled"></i>گروه‌های محصولات</button>
+  <button class="si" data-perm="def" onclick="gp('products',this)"><i class="ti ti-coffee"></i>محصولات</button>
+  <button class="si" data-perm="def" onclick="gp('recipes',this)"><i class="ti ti-clipboard-list"></i>رسپی کارد</button>
+  <button class="si" data-perm="def" onclick="gp('suppliers',this)"><i class="ti ti-truck"></i>تامین‌کنندگان</button>
+  <button class="si" data-perm="def" onclick="gp('customers',this)"><i class="ti ti-users"></i>مشتریان</button>
+  <button class="si" data-perm="def" onclick="gp('employees',this)"><i class="ti ti-id-badge-2"></i>پرسنل</button>
+  <button class="si" data-perm="def" onclick="gp('coa',this)"><i class="ti ti-sitemap"></i>درخت حسابداری</button>
+  <div class="sg">عملیات</div>
+  <button class="si" data-perm="purchase" onclick="gp('purchase',this)"><i class="ti ti-shopping-cart"></i>فاکتور خرید</button>
+  <button class="si" data-perm="sales" onclick="gp('sales',this)"><i class="ti ti-file-invoice"></i>فاکتور فروش</button>
+  <button class="si" data-perm="emp_sales" onclick="gp('emp-sales',this)"><i class="ti ti-user-dollar"></i>فروش به پرسنل</button>
+  <button class="si" data-perm="inventory" onclick="gp('inventory',this)"><i class="ti ti-clipboard-check"></i>انبارگردانی</button>
+  <button class="si" data-perm="payroll" onclick="gp('payroll',this)"><i class="ti ti-cash"></i>حقوق و دستمزد</button>
+  <div class="sg">گزارش‌ها</div>
+  <button class="si" data-perm="rep_ledger" onclick="gp('rep-ledger',this)"><i class="ti ti-book"></i>معین طرف حساب</button>
+  <button class="si" data-perm="rep_kardex" onclick="gp('rep-kardex',this)"><i class="ti ti-history"></i>کاردکس کالا</button>
+  <button class="si" data-perm="rep_variance" onclick="gp('rep-variance',this)"><i class="ti ti-arrows-diff"></i>انحراف تولید</button>
+  <button class="si" data-perm="rep_sales" onclick="gp('rep-sales',this)"><i class="ti ti-chart-bar"></i>گزارش فروش</button>
+  <button class="si" data-perm="rep_pl" onclick="gp('rep-pl',this)"><i class="ti ti-trending-up"></i>سود و زیان</button>
+  <div class="sg" data-admin>مدیریت</div>
+  <button class="si" data-perm="users" data-admin onclick="gp('users',this)"><i class="ti ti-users-group"></i>مدیریت کاربران</button>
+  <button class="si" data-perm="backup" data-admin onclick="gp('backup',this)"><i class="ti ti-database-export"></i>بکاپ و بازیابی</button>
+</div>
+
+<div class="main">
+  <!-- DASHBOARD -->
+  <div class="pg on" id="p-dash">
+    <div class="ph"><div class="ph-t">داشبورد</div><div class="ph-s">خلاصه وضعیت</div></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
+      <div class="met blue"><div class="ml">فروش امروز</div><div class="mv" id="d-sales">—</div></div>
+      <div class="met green"><div class="ml">فروش این ماه</div><div class="mv" id="d-msales">—</div></div>
+      <div class="met amber"><div class="ml">خرید این ماه</div><div class="mv" id="d-mpurch">—</div></div>
+      <div class="met purple"><div class="ml">پرسنل فعال</div><div class="mv" id="d-emps">—</div></div>
+    </div>
+    <div class="card"><div class="ch"><span class="ct">آخرین فاکتورها</span></div><div id="d-recent"><div class="empty">در حال بارگذاری...</div></div></div>
+  </div>
+
+  <!-- PURCHASE -->
+<div class="pg" id="p-mat-groups">
+  <div class="ph"><div class="ph-t">گروه‌های مواد اولیه</div><div class="ph-s">هر گروه → COA دارایی (1.2.X) + COA هزینه (5.1.X) خودکار</div></div>
+  <div class="ib"><b>منطق کدبندی:</b> ساخت گروه جدید = ۲ حساب خودکار:<br>
+  ۱. موجودی گروه زیر <b>1.2</b> (دارایی — بدهکار) &nbsp;|&nbsp; ۲. هزینه مصرف گروه زیر <b>5.1</b> (هزینه — بدهکار)</div>
+  <div class="card">
+    <div class="ch"><span class="ct">گروه‌های تعریف‌شده</span><button class="btn bp" onclick="openMGM()"><i class="ti ti-plus"></i>گروه جدید</button></div>
+    <div class="tbl"><table><thead><tr><th>کد</th><th>نام گروه</th><th>COA دارایی</th><th>COA هزینه</th><th>تعداد کالا</th><th>وضعیت</th><th></th></tr></thead><tbody id="mg-tb"></tbody></table></div>
+  </div>
+</div>
+
+<!-- MATERIALS -->
+<div class="pg" id="p-materials">
+  <div class="ph"><div class="ph-t">مواد اولیه</div><div class="ph-s">هر ماده اولیه کد COA تفصیلی سطح ۴ دارد (مثلاً 1.2.1.001)</div></div>
+  <div class="card">
+    <div class="ch"><span class="ct">لیست مواد اولیه</span><div class="bg"><button class="btn" onclick="tmplMats()" title="دانلود فرمت نمونه"><i class="ti ti-download"></i>فرمت</button><button class="btn bam" onclick="importMats()"><i class="ti ti-clipboard"></i>ورود از اکسل</button><button class="btn bs" onclick="exportMats()"><i class="ti ti-file-spreadsheet"></i>خروجی</button><button class="btn bp" onclick="openMatM()"><i class="ti ti-plus"></i>ماده اولیه جدید</button></div></div>
+    <div class="ib" style="font-size:11px">ورود از اکسل: ۴ ستون به ترتیب <b>نام فارسی | گروه | واحد | قیمت خرید</b> — کد کالا و COA خودکار ساخته میشه. (واحد و قیمت اختیاری)</div>
+    <div class="sbar"><i class="ti ti-search"></i><input id="mat-q" placeholder="جستجو — نام، کد..." oninput="filterMats()"></div>
+    <div class="tbl"><table><thead><tr><th>کد</th><th>نام ماده اولیه</th><th>گروه</th><th>واحد</th><th>موجودی</th><th>قیمت میانگین (WAC)</th><th>COA تفصیلی</th><th>وضعیت</th><th></th></tr></thead><tbody id="mat-tb"></tbody></table></div>
+  </div>
+</div>
+
+<!-- PROD GROUPS -->
+<div class="pg" id="p-prod-groups">
+  <div class="ph"><div class="ph-t">گروه‌های محصولات فروش</div><div class="ph-s">هر گروه → COA درآمد (4.1.X) خودکار</div></div>
+  <div class="ib"><b>منطق:</b> سند فروش مستقیم به COA درآمد تفصیلی هر محصول میره — بستانکار</div>
+  <div class="card">
+    <div class="ch"><span class="ct">گروه‌های محصولات</span><button class="btn bp" onclick="openPGM()"><i class="ti ti-plus"></i>گروه جدید</button></div>
+    <div class="tbl"><table><thead><tr><th>کد</th><th>نام گروه</th><th>COA درآمد</th><th>تعداد محصول</th><th>وضعیت</th><th></th></tr></thead><tbody id="pg-tb"></tbody></table></div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="pg" id="p-products">
+  <div class="ph"><div class="ph-t">محصولات فروش</div><div class="ph-s">هر محصول کد COA درآمد تفصیلی سطح ۴ (مثلاً 4.1.1.001)</div></div>
+  <div class="card">
+    <div class="ch"><span class="ct">لیست محصولات</span><div class="bg"><button class="btn" onclick="tmplProds()" title="فرمت نمونه"><i class="ti ti-download"></i>فرمت</button><button class="btn bam" onclick="importProds()"><i class="ti ti-clipboard"></i>ورود از اکسل</button><button class="btn bs" onclick="exportProds()"><i class="ti ti-file-spreadsheet"></i>خروجی</button><button class="btn bp" onclick="openProdM()"><i class="ti ti-plus"></i>محصول جدید</button></div></div>
+    <div class="ib" style="font-size:11px">ورود از اکسل: ۳ ستون به ترتیب <b>نام فارسی | گروه | قیمت فروش</b> — کد و COA درآمد خودکار ساخته میشه.</div>
+    <div class="sbar"><i class="ti ti-search"></i><input id="prod-q" placeholder="جستجو..." oninput="filterProds()"></div>
+    <div class="tbl"><table><thead><tr><th>کد</th><th>نام محصول</th><th>گروه</th><th>قیمت فروش</th><th>COA درآمد</th><th>رسپی</th><th>وضعیت</th><th></th></tr></thead><tbody id="prod-tb"></tbody></table></div>
+  </div>
+</div>
+
+<!-- RECIPES -->
+<div class="pg" id="p-recipes">
+  <div class="ph"><div class="ph-t">رسپی کارد</div><div class="ph-s">فقط محاسباتی — هیچ سندی ثبت نمیشه | برای محاسبه انحراف تولید استفاده میشه</div></div>
+  <div class="ib"><b>کاربرد:</b> رسپی × فروش واقعی = مصرف تئوریک &nbsp;|&nbsp; مقایسه با مصرف واقعی (انبارگردانی) = <b>انحراف تولید</b></div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="ch"><span class="ct">ورود گروهی رسپی از اکسل</span><div class="bg"><button class="btn" onclick="tmplRcp()" title="فرمت نمونه"><i class="ti ti-download"></i>فرمت</button><button class="btn bam" onclick="importRcp()"><i class="ti ti-clipboard"></i>ورود از اکسل</button><button class="btn bs" onclick="exportRcp()"><i class="ti ti-file-spreadsheet"></i>خروجی همه رسپی‌ها</button></div></div>
+    <div class="ib" style="font-size:11px;margin:0">ورود از اکسل: ۳ ستون به ترتیب <b>نام محصول | نام ماده اولیه | مقدار مصرف</b> — هر خط یک ماده از یک رسپی. (محصول و ماده باید از قبل تعریف شده باشن)</div>
+  </div>
+  <div style="display:grid;grid-template-columns:270px 1fr;gap:12px">
+    <div class="card" style="margin:0">
+      <div class="ch"><span class="ct">انتخاب محصول</span></div>
+      <div class="sbar"><i class="ti ti-search"></i><input id="rcp-q" placeholder="جستجو محصول..." oninput="filterRcpProds()"></div>
+      <div id="rcp-prod-list"><div class="empty"><i class="ti ti-coffee"></i>در حال بارگذاری...</div></div>
+    </div>
+    <div class="card" style="margin:0" id="rcp-editor">
+      <div class="empty"><i class="ti ti-clipboard-list"></i>یک محصول از لیست انتخاب کنید</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPLIERS -->
+<div class="pg" id="p-suppliers">
+  <div class="ph"><div class="ph-t">تامین‌کنندگان</div><div class="ph-s">حساب تفصیلی زیر 2.1.1 — ماهیت: بستانکار (بدهی)</div></div>
+  <div class="card">
+    <div class="ch"><span class="ct">لیست تامین‌کنندگان</span><button class="btn bpu" onclick="openPartyM('supplier')"><i class="ti ti-plus"></i>تامین‌کننده جدید</button></div>
+    <div class="sbar"><i class="ti ti-search"></i><input id="supp-q" placeholder="جستجو..." oninput="filterParties('supplier')"></div>
+    <div class="tbl"><table><thead><tr><th>کد</th><th>نام</th><th>تلفن</th><th>شماره مالیاتی</th><th>ارز</th><th>COA</th><th>وضعیت</th><th></th></tr></thead><tbody id="supp-tb"></tbody></table></div>
+  </div>
+</div>
+
+<!-- CUSTOMERS -->
+<div class="pg" id="p-customers">
+  <div class="ph"><div class="ph-t">مشتریان</div><div class="ph-s">حساب تفصیلی زیر 1.1.3 — ماهیت: بدهکار (دریافتنی)</div></div>
+  <div class="card">
+    <div class="ch"><span class="ct">لیست مشتریان</span><button class="btn bs" onclick="openPartyM('customer')"><i class="ti ti-plus"></i>مشتری جدید</button></div>
+    <div class="sbar"><i class="ti ti-search"></i><input id="cust-q" placeholder="جستجو..." oninput="filterParties('customer')"></div>
+    <div class="tbl"><table><thead><tr><th>کد</th><th>نام</th><th>تلفن</th><th>COA</th><th>وضعیت</th><th></th></tr></thead><tbody id="cust-tb"></tbody></table></div>
+  </div>
+</div>
+
+<!-- EMPLOYEES -->
+<div class="pg" id="p-employees">
+  <div class="ph"><div class="ph-t">پرسنل</div><div class="ph-s">هر پرسنل: پرداختنی (2.2.X) + هزینه حقوق (5.2.1.X) — خودکار</div></div>
+  <div class="ib">
+    <b>سند حقوق:</b> هزینه حقوق (5.2.1.X) بدهکار ← پرداختنی پرسنل (2.2.X) بستانکار<br>
+    <b>فروش به پرسنل:</b> پرداختنی پرسنل (2.2.X) بدهکار با تخفیف ← درآمد فروش بستانکار
+  </div>
+  <div class="card">
+    <div class="ch"><span class="ct">لیست پرسنل</span><div class="bg"><button class="btn" onclick="tmplEmps()" title="فرمت نمونه"><i class="ti ti-download"></i>فرمت</button><button class="btn bam" onclick="importEmps()"><i class="ti ti-clipboard"></i>ورود از اکسل</button><button class="btn bs" onclick="exportEmps()"><i class="ti ti-file-spreadsheet"></i>خروجی</button><button class="btn bp" onclick="openEmpM()"><i class="ti ti-user-plus"></i>پرسنل جدید</button></div></div>
+    <div class="ib" style="font-size:11px">ورود از اکسل: ۴ ستون به ترتیب <b>نام | سمت | حقوق پایه | نرخ روزانه</b> — کد پرسنلی و COA خودکار ساخته میشه.</div>
+    <div class="tbl"><table><thead><tr><th>کد</th><th>نام</th><th>سمت</th><th>بخش</th><th>حقوق پایه</th><th>نرخ روزانه</th><th>تخفیف غذا</th><th>COA پرداختنی</th><th>وضعیت</th><th></th></tr></thead><tbody id="emp-tb"></tbody></table></div>
+  </div>
+</div>
+
+<!-- COA -->
+<div class="pg" id="p-coa">
+  <div class="ph"><div class="ph-t">درخت حسابداری (COA)</div><div class="ph-s">ساختار کامل ۴ سطحی</div></div>
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:12px">
+    <div class="card" style="margin:0">
+      <div class="ch"><span class="ct">ساختار حساب‌ها</span><button class="btn" onclick="loadCOA(true)"><i class="ti ti-refresh"></i></button></div>
+      <div id="coa-tree"><div class="empty">در حال بارگذاری...</div></div>
+    </div>
+    <div class="card" style="margin:0">
+      <div class="ch"><span class="ct" id="cf-title">حساب جدید</span></div>
+      <div class="fg f2">
+        <div class="fl"><label>کد *</label><input id="cf-code" placeholder="مثال: 5.1.9"></div>
+        <div class="fl"><label>حساب مادر</label><select id="cf-par"><option value="">— ریشه —</option></select></div>
+      </div>
+      <div class="fg f2">
+        <div class="fl"><label>نام فارسی *</label><input id="cf-fa"></div>
+        <div class="fl"><label>نام ترکی</label><input id="cf-tr"></div>
+      </div>
+      <div class="fg f2">
+        <div class="fl"><label>نوع</label><select id="cf-type" onchange="autoNB()"><option value="asset">دارایی</option><option value="liability">بدهی</option><option value="equity">حقوق صاحبان</option><option value="revenue">درآمد</option><option value="expense">هزینه</option></select></div>
+        <div class="fl"><label>ماهیت</label><select id="cf-bal"><option value="debit">بدهکار</option><option value="credit">بستانکار</option></select></div>
+      </div>
+      <div class="fl" style="margin-bottom:10px"><label>سطح</label><select id="cf-grp"><option value="false">تفصیلی (قابل ثبت)</option><option value="true">گروه</option></select></div>
+      <div class="tb" style="margin-bottom:12px"><div class="tr2"><span>ماهیت:</span><span id="cf-mh" style="font-weight:700;color:var(--blue)">بدهکار</span></div></div>
+      <div class="bg"><button class="btn bp" onclick="saveCOA()"><i class="ti ti-check"></i>ذخیره</button><button class="btn" onclick="clearCF()">پاک</button></div>
+    </div>
+  </div>
+</div>
+
+</div></div>
+
+<!-- MODAL: MAT GROUP -->
+<div class="modal-bg" id="mgm" onclick="if(event.target===this)cm('mgm')">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="mgm-t">گروه مواد اولیه جدید</span><button class="btn" onclick="cm('mgm')">✕</button></div>
+    <div class="mb"><div class="mb-t">اطلاعات گروه</div>
+      <div class="fg f2"><div class="fl"><label>کد گروه (خودکار)</label><input id="mg-code" placeholder="خالی بگذارید — خودکار"></div><div class="fl"><label>نام فارسی *</label><input id="mg-name" placeholder="ادویه‌جات"></div></div>
+      <div class="fg f2"><div class="fl"><label>نام ترکی</label><input id="mg-tr" placeholder="..."></div><div class="fl"><label>ترتیب نمایش</label><input type="number" id="mg-sort" value="0"></div></div>
+    </div>
+    <div class="tb" style="margin-bottom:14px">
+      <div class="tr2"><span>COA دارایی (خودکار):</span><span id="mg-acoa" class="cpill">—</span></div>
+      <div class="tr2"><span>COA هزینه (خودکار):</span><span id="mg-ecoa" class="cpill">—</span></div>
+      <div class="tr2"><span>ماهیت:</span><span style="color:var(--amber);font-size:11px">هر دو بدهکار</span></div>
+    </div>
+    <button class="btn bp" onclick="saveMG()" style="width:100%;justify-content:center"><i class="ti ti-check"></i>ذخیره + ساخت خودکار COA</button>
+  </div>
+</div>
+
+<!-- MODAL: MATERIAL -->
+<div class="modal-bg" id="matm" onclick="if(event.target===this)cm('matm')">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="matm-t">ماده اولیه جدید</span><button class="btn" onclick="cm('matm')">✕</button></div>
+    <div class="mb"><div class="mb-t">اطلاعات ماده اولیه</div>
+      <div class="fg f4"><div class="fl"><label>کد *</label><input id="m-code" placeholder="RM-001-001"></div><div class="fl"><label>نام فارسی *</label><input id="m-name" placeholder="..."></div><div class="fl"><label>نام ترکی</label><input id="m-tr" placeholder="..."></div><div class="fl"><label>بارکد</label><input id="m-bar" placeholder="..."></div></div>
+      <div class="fg f3"><div class="fl"><label>گروه *</label><select id="m-grp" onchange="prevMatCOA()"></select></div><div class="fl"><label>واحد *</label><select id="m-unit"><option>kg</option><option>g</option><option>L</option><option>ml</option><option>adet</option><option>kutu</option><option>paket</option><option>porsiyon</option></select></div><div class="fl"><label>موجودی اولیه</label><input type="number" id="m-stock" value="0"></div></div>
+      <div class="fg f3"><div class="fl"><label>حداقل موجودی</label><input type="number" id="m-min" value="0"></div><div class="fl"><label>نقطه سفارش</label><input type="number" id="m-reorder" value="0"></div><div class="fl"><label>قیمت خرید اولیه</label><input type="number" id="m-price" value="0"></div></div>
+    </div>
+    <div class="tb" style="margin-bottom:14px">
+      <div class="tr2"><span>COA تفصیلی سطح ۴ (خودکار):</span><span id="m-coa-prev" class="cpill">—</span></div>
+      <div class="tr2"><span>ماهیت:</span><span style="color:var(--blue);font-size:11px">بدهکار (دارایی)</span></div>
+    </div>
+    <button class="btn bp" onclick="saveMat()" style="width:100%;justify-content:center"><i class="ti ti-check"></i>ذخیره ماده اولیه + COA تفصیلی</button>
+  </div>
+</div>
+
+<!-- MODAL: PROD GROUP -->
+<div class="modal-bg" id="pgm" onclick="if(event.target===this)cm('pgm')">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="pgm-t">گروه محصولات جدید</span><button class="btn" onclick="cm('pgm')">✕</button></div>
+    <div class="mb"><div class="mb-t">اطلاعات گروه</div>
+      <div class="fg f2"><div class="fl"><label>کد (خودکار)</label><input id="pg-code" placeholder="خالی بگذارید — خودکار"></div><div class="fl"><label>نام فارسی *</label><input id="pg-name" placeholder="پیش‌غذاها"></div></div>
+      <div class="fg f2"><div class="fl"><label>نام ترکی</label><input id="pg-tr" placeholder="..."></div><div class="fl"><label>ترتیب</label><input type="number" id="pg-sort" value="0"></div></div>
+    </div>
+    <div class="tb" style="margin-bottom:14px">
+      <div class="tr2"><span>COA درآمد (خودکار):</span><span id="pg-rcoa" class="cpill">—</span></div>
+      <div class="tr2"><span>ماهیت:</span><span style="color:var(--green);font-size:11px">بستانکار (درآمد)</span></div>
+    </div>
+    <button class="btn bp" onclick="savePG()" style="width:100%;justify-content:center"><i class="ti ti-check"></i>ذخیره + COA درآمد</button>
+  </div>
+</div>
+
+<!-- MODAL: PRODUCT -->
+<div class="modal-bg" id="prodm" onclick="if(event.target===this)cm('prodm')">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="prodm-t">محصول جدید</span><button class="btn" onclick="cm('prodm')">✕</button></div>
+    <div class="mb"><div class="mb-t">اطلاعات محصول</div>
+      <div class="fg f4"><div class="fl"><label>کد *</label><input id="pr-code" placeholder="PR-001-001"></div><div class="fl"><label>نام فارسی *</label><input id="pr-name" placeholder="..."></div><div class="fl"><label>نام ترکی</label><input id="pr-tr" placeholder="..."></div><div class="fl"><label>واحد</label><select id="pr-unit"><option>adet</option><option>porsiyon</option><option>bardak</option><option>tabak</option></select></div></div>
+      <div class="fg f2"><div class="fl"><label>گروه *</label><select id="pr-grp" onchange="prevProdCOA()"></select></div><div class="fl"><label>قیمت فروش (₺)</label><input type="number" id="pr-price" value="0"></div></div>
+    </div>
+    <div class="tb" style="margin-bottom:14px">
+      <div class="tr2"><span>COA درآمد سطح ۴ (خودکار):</span><span id="pr-coa-prev" class="cpill">—</span></div>
+      <div class="tr2"><span>ماهیت:</span><span style="color:var(--green);font-size:11px">بستانکار (درآمد فروش)</span></div>
+    </div>
+    <button class="btn bp" onclick="saveProd()" style="width:100%;justify-content:center"><i class="ti ti-check"></i>ذخیره محصول + COA درآمد</button>
+  </div>
+</div>
+
+<!-- MODAL: PARTY -->
+<div class="modal-bg" id="partym" onclick="if(event.target===this)cm('partym')">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="partym-t">طرف حساب جدید</span><button class="btn" onclick="cm('partym')">✕</button></div>
+    <div class="mb"><div class="mb-t">اطلاعات</div>
+      <div class="fg f3"><div class="fl"><label>کد (خودکار)</label><input id="p-code" class="ro" readonly></div><div class="fl"><label>نام *</label><input id="p-name" placeholder="..."></div><div class="fl"><label>نوع</label><select id="p-type"><option value="supplier">تامین‌کننده</option><option value="customer">مشتری</option></select></div></div>
+      <div class="fg f3"><div class="fl"><label>شماره مالیاتی</label><input id="p-tax" placeholder="..."></div><div class="fl"><label>تلفن</label><input id="p-phone" placeholder="+90..."></div><div class="fl"><label>ارز</label><select id="p-cur"><option value="TRY">₺ TRY</option><option value="USD">$ USD</option><option value="GBP">£ GBP</option></select></div></div>
+      <div class="fl"><label>آدرس</label><input id="p-addr" placeholder="..."></div>
+    </div>
+    <div class="tb" style="margin-bottom:14px">
+      <div class="tr2"><span>COA تفصیلی:</span><span id="p-coa" class="cpill">—</span></div>
+      <div class="tr2"><span>ماهیت:</span><span id="p-mh" style="font-weight:700">—</span></div>
+    </div>
+    <button class="btn bp" onclick="saveParty()" style="width:100%;justify-content:center"><i class="ti ti-check"></i>ذخیره</button>
+  </div>
+</div>
+
+<!-- MODAL: EMPLOYEE -->
+<div class="modal-bg" id="empm" onclick="if(event.target===this)cm('empm')">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="empm-t">پرسنل جدید</span><button class="btn" onclick="cm('empm')">✕</button></div>
+    <div class="mb"><div class="mb-t">اطلاعات پرسنل</div>
+      <div class="fg f3"><div class="fl"><label>کد (خودکار)</label><input id="e-code" class="ro" readonly></div><div class="fl"><label>نام و نام‌خانوادگی *</label><input id="e-name" placeholder="..."></div><div class="fl"><label>سمت</label><input id="e-pos" placeholder="باریستا، آشپز..."></div></div>
+      <div class="fg f3"><div class="fl"><label>بخش</label><select id="e-dept"><option value="کافه">کافه</option><option value="آشپزخانه">آشپزخانه</option><option value="سرویس">سرویس</option><option value="مدیریت">مدیریت</option></select></div><div class="fl"><label>تاریخ استخدام</label><input type="date" id="e-start"></div><div class="fl"><label>ارز حقوق</label><select id="e-cur"><option value="TRY">₺ TRY</option><option value="USD">$</option></select></div></div>
+    </div>
+    <div class="mb"><div class="mb-t">تنظیمات حقوق</div>
+      <div class="fg f3"><div class="fl"><label>حقوق پایه ماهانه</label><input type="number" id="e-sal" value="0"></div><div class="fl"><label>نرخ روزانه</label><input type="number" id="e-daily" value="0"></div><div class="fl"><label>تخفیف غذا %</label><input type="number" id="e-disc" value="20"></div></div>
+      <div class="fg f3"><div class="fl"><label>بیمه کارمند %</label><input type="number" id="e-sgk" value="14"></div><div class="fl"><label>بیمه کارفرما %</label><input type="number" id="e-esgk" value="20.5"></div><div class="fl"><label>مالیات درآمد %</label><input type="number" id="e-itax" value="15"></div></div>
+    </div>
+    <div class="tb" style="margin-bottom:14px">
+      <div class="tr2"><span>COA پرداختنی (2.2.X):</span><span id="e-pay-coa" class="cpill">—</span></div>
+      <div class="tr2"><span>COA هزینه حقوق (5.2.1.X):</span><span id="e-exp-coa" class="cpill">—</span></div>
+      <div class="tr2"><span>ماهیت پرداختنی:</span><span style="color:var(--purple);font-size:11px">بستانکار (بدهی به پرسنل)</span></div>
+    </div>
+    <button class="btn bp" onclick="saveEmp()" style="width:100%;justify-content:center"><i class="ti ti-check"></i>ذخیره پرسنل + COA خودکار</button>
+
+  <div class="pg" id="p-purchase">
+    <div class="ph"><div class="ph-t">فاکتور خرید مواد اولیه</div><div class="ph-s">ثبت خرید → ورود به انبار + سند خودکار</div></div>
+    <div class="ib"><b>سند خودکار:</b> موجودی ماده اولیه (1.2.X) بدهکار ← پرداختنی تامین‌کننده (2.1.1) یا صندوق بستانکار</div>
+    <div class="card">
+      <div class="fg f3">
+        <div class="fl"><label>تامین‌کننده *</label><div class="ac-wrap"><input id="pi-sq" placeholder="جستجو..." oninput="acParty('pi-sq','pi-sd','pi-si','supplier')"><div class="ac-dd" id="pi-sd"></div><input type="hidden" id="pi-si"></div></div>
+        <div class="fl"><label>تاریخ</label><input type="date" id="pi-date"></div>
+        <div class="fl"><label>نحوه پرداخت</label><select id="pi-pay"><option value="credit">نسیه (حساب باز)</option><option value="cash">نقد</option></select></div>
+      </div>
+      <div class="ch" style="margin-top:6px"><span class="ct">اقلام</span><div class="bg"><button class="btn" onclick="tmplPurchase()" title="دانلود فرمت نمونه"><i class="ti ti-download"></i>فرمت</button><button class="btn bam" onclick="pastePiFromExcel()"><i class="ti ti-clipboard"></i>paste از اکسل</button><button class="btn" onclick="addPiLine()"><i class="ti ti-plus"></i>ردیف</button></div></div>
+      <div class="ib" style="font-size:11px;margin:6px 0">از اکسل ۳ ستون کپی کن: <b>نام ماده اولیه | تعداد | قیمت</b> — بعد دکمه paste را بزن. اگه ماده اولیه‌ای نبود، خودش با کد خودکار می‌سازه.</div>
+      <div style="display:grid;grid-template-columns:2fr 90px 90px 90px 28px;gap:6px;font-size:10px;font-weight:700;color:var(--tx3);padding:4px 0 6px;border-bottom:1px solid var(--bd);margin-bottom:6px;text-transform:uppercase">
+        <span>ماده اولیه</span><span>تعداد</span><span>قیمت واحد</span><span>جمع</span><span></span>
+      </div>
+      <div id="pi-lines"></div>
+      <div class="tb"><div class="tr2 fin"><span>مبلغ کل</span><span id="pi-total">₺0</span></div></div>
+      <div class="bg" style="margin-top:10px"><button class="btn bp" onclick="postPurchase()"><i class="ti ti-check"></i>ثبت فاکتور خرید</button><button class="btn" onclick="clearPi()">پاک</button></div>
+    </div>
+    <div class="card"><div class="ch"><span class="ct">فاکتورهای خرید اخیر</span></div><div class="tbl"><table><thead><tr><th>شماره</th><th>تامین‌کننده</th><th>تاریخ</th><th>مبلغ</th><th>پرداخت</th></tr></thead><tbody id="pi-list"></tbody></table></div></div>
+  </div>
+
+  <!-- SALES -->
+  <div class="pg" id="p-sales">
+    <div class="ph"><div class="ph-t">فاکتور فروش</div><div class="ph-s">ثبت فروش → سند درآمد خودکار</div></div>
+    <div class="ib"><b>سند خودکار:</b> صندوق/بانک/دریافتنی بدهکار ← درآمد فروش (4.1.X.XXX به تفکیک محصول) بستانکار</div>
+    <div class="card">
+      <div class="fg f3">
+        <div class="fl"><label>مشتری (اختیاری)</label><div class="ac-wrap"><input id="si-cq" placeholder="نقدی / جستجو..." oninput="acParty('si-cq','si-cd','si-ci','customer')"><div class="ac-dd" id="si-cd"></div><input type="hidden" id="si-ci"></div></div>
+        <div class="fl"><label>تاریخ</label><input type="date" id="si-date"></div>
+        <div class="fl"><label>نحوه دریافت</label><select id="si-pay"><option value="cash">نقد (صندوق)</option><option value="card">کارت (بانک)</option><option value="credit">نسیه (دریافتنی)</option></select></div>
+      </div>
+      <div class="ch" style="margin-top:6px"><span class="ct">اقلام فروش</span><div class="bg"><button class="btn" onclick="tmplSale()" title="دانلود فرمت نمونه"><i class="ti ti-download"></i>فرمت</button><button class="btn bam" onclick="pasteSiFromExcel()"><i class="ti ti-clipboard"></i>paste از اکسل</button><button class="btn" onclick="addSiLine()"><i class="ti ti-plus"></i>ردیف</button></div></div>
+      <div class="ib" style="font-size:11px;margin:6px 0">از اکسل ۳ ستون کپی کن: <b>نام محصول | تعداد | قیمت</b> — بعد دکمه paste را بزن.</div>
+      <div style="display:grid;grid-template-columns:2fr 90px 90px 90px 28px;gap:6px;font-size:10px;font-weight:700;color:var(--tx3);padding:4px 0 6px;border-bottom:1px solid var(--bd);margin-bottom:6px;text-transform:uppercase">
+        <span>محصول</span><span>تعداد</span><span>قیمت</span><span>جمع</span><span></span>
+      </div>
+      <div id="si-lines"></div>
+      <div class="fg f3" style="margin-top:10px">
+        <div class="fl"><label>تخفیف کلی (٪)</label><input type="text" inputmode="decimal" id="si-disc" value="0" oninput="calcSiSummary()"></div>
+        <div class="fl"><label>نرخ KDV (٪)</label><input type="text" inputmode="decimal" id="si-kdv" value="0" oninput="calcSiSummary()"></div>
+        <div class="fl"><label>توضیحات</label><input id="si-note" placeholder="اختیاری..."></div>
+      </div>
+      <div class="tb">
+        <div class="tr2"><span>جمع اقلام</span><span id="si-subtotal">₺0</span></div>
+        <div class="tr2" style="color:var(--green)"><span>تخفیف</span><span id="si-discamt">₺0</span></div>
+        <div class="tr2"><span>پس از تخفیف</span><span id="si-afterdisc">₺0</span></div>
+        <div class="tr2" style="color:var(--amber)"><span>KDV</span><span id="si-kdvamt">₺0</span></div>
+        <div class="tr2 fin"><span>مبلغ نهایی قابل پرداخت</span><span id="si-total">₺0</span></div>
+      </div>
+      <div class="bg" style="margin-top:10px"><button class="btn bp" onclick="postSale()"><i class="ti ti-check"></i>ثبت فاکتور فروش</button><button class="btn" onclick="clearSi()">پاک</button></div>
+    </div>
+    <div class="card"><div class="ch"><span class="ct">فاکتورهای فروش اخیر</span></div><div class="tbl"><table><thead><tr><th>شماره</th><th>مشتری</th><th>تاریخ</th><th>مبلغ</th><th>دریافت</th></tr></thead><tbody id="si-list"></tbody></table></div></div>
+  </div>
+
+  <!-- EMP SALES -->
+  <div class="pg" id="p-emp-sales">
+    <div class="ph"><div class="ph-t">فروش به پرسنل</div><div class="ph-s">با تخفیف — به حساب پرسنل بدهکار میشه</div></div>
+    <div class="ib"><b>سند خودکار:</b> پرداختنی پرسنل (2.2.X) بدهکار (با تخفیف) ← درآمد فروش بستانکار</div>
+    <div class="card">
+      <div class="fg f3">
+        <div class="fl"><label>پرسنل *</label><select id="es-emp" onchange="updEsDiscount()"><option value="">— انتخاب —</option></select></div>
+        <div class="fl"><label>تاریخ</label><input type="date" id="es-date"></div>
+        <div class="fl"><label>تخفیف %</label><input type="number" id="es-disc" value="20" oninput="calcEs()"></div>
+      </div>
+      <div class="ch" style="margin-top:6px"><span class="ct">اقلام</span><button class="btn" onclick="addEsLine()"><i class="ti ti-plus"></i>ردیف</button></div>
+      <div style="display:grid;grid-template-columns:2fr 90px 90px 90px 28px;gap:6px;font-size:10px;font-weight:700;color:var(--tx3);padding:4px 0 6px;border-bottom:1px solid var(--bd);margin-bottom:6px;text-transform:uppercase">
+        <span>محصول</span><span>تعداد</span><span>قیمت</span><span>جمع</span><span></span>
+      </div>
+      <div id="es-lines"></div>
+      <div class="tb"><div class="tr2"><span>جمع</span><span id="es-sub">₺0</span></div><div class="tr2" style="color:var(--green)"><span>تخفیف</span><span id="es-discount">₺0</span></div><div class="tr2 fin"><span>قابل پرداخت پرسنل</span><span id="es-total">₺0</span></div></div>
+      <div class="bg" style="margin-top:10px"><button class="btn bp" onclick="postEmpSale()"><i class="ti ti-check"></i>ثبت فروش به پرسنل</button><button class="btn" onclick="clearEs()">پاک</button></div>
+    </div>
+  </div>
+
+  <!-- INVENTORY -->
+  <div class="pg" id="p-inventory">
+    <div class="ph"><div class="ph-t">انبارگردانی</div><div class="ph-s">موجودی فیزیکی آخر دوره → محاسبه خودکار مصرف</div></div>
+    <div class="ib"><b>روش Back-flush:</b> موجودی اول دوره + خرید طی دوره − موجودی فیزیکی (انبارگردانی) = <b>مصرف واقعی</b><br>سند خودکار: هزینه مواد (5.1.X) بدهکار ← موجودی (1.2.X) بستانکار</div>
+    <div class="card">
+      <div class="fg f3">
+        <div class="fl"><label>دوره</label><input id="ic-period" placeholder="2026-06"></div>
+        <div class="fl"><label>تاریخ شمارش</label><input type="date" id="ic-date"></div>
+        <div class="fl" style="justify-content:flex-end"><button class="btn bp" onclick="loadInventoryCount()" style="justify-content:center"><i class="ti ti-list"></i>بارگذاری مواد اولیه</button></div>
+      </div>
+      <div class="tbl" style="margin-top:8px"><table><thead><tr><th>ماده اولیه</th><th>گروه</th><th>موجودی سیستم</th><th>شمارش فیزیکی</th><th>قیمت واحد</th><th>مصرف محاسبه‌شده</th></tr></thead><tbody id="ic-tb"><tr><td colspan="6" class="empty">دکمه بارگذاری را بزنید</td></tr></tbody></table></div>
+      <div class="tb"><div class="tr2 fin"><span>ارزش کل مصرف</span><span id="ic-total">₺0</span></div></div>
+      <div class="bg" style="margin-top:10px"><button class="btn bs" onclick="postInventory()"><i class="ti ti-check"></i>ثبت انبارگردانی + سند مصرف</button></div>
+    </div>
+  </div>
+
+  <!-- PAYROLL -->
+  <div class="pg" id="p-payroll">
+    <div class="ph"><div class="ph-t">حقوق و دستمزد</div><div class="ph-s">روز کارکرد × نرخ روزانه → سند حقوق خودکار</div></div>
+    <div class="ib"><b>سند خودکار:</b> هزینه حقوق (5.2.1.X) بدهکار ← پرداختنی پرسنل (2.2.X) بستانکار<br>تا زمانی که سند پرداخت دستی ثبت بشه، مانده پرسنل باقی میمونه</div>
+    <div class="card">
+      <div class="fg f3">
+        <div class="fl"><label>پرسنل *</label><select id="pr-emp" onchange="updPayroll()"><option value="">— انتخاب —</option></select></div>
+        <div class="fl"><label>دوره</label><input id="pr-period" placeholder="2026-06"></div>
+        <div class="fl"><label>تاریخ</label><input type="date" id="pr-date"></div>
+      </div>
+      <div class="fg f3">
+        <div class="fl"><label>نرخ روزانه</label><input type="number" id="pr-daily" value="0" oninput="calcPayroll()"></div>
+        <div class="fl"><label>روز کارکرد</label><input type="number" id="pr-days" value="30" oninput="calcPayroll()"></div>
+        <div class="fl"><label>اضافه/کسر</label><input type="number" id="pr-adj" value="0" oninput="calcPayroll()"></div>
+      </div>
+      <div class="tb"><div class="tr2 fin"><span>حقوق قابل پرداخت</span><span id="pr-total">₺0</span></div></div>
+      <div class="bg" style="margin-top:10px"><button class="btn bp" onclick="postPayroll()"><i class="ti ti-check"></i>ثبت سند حقوق</button></div>
+    </div>
+    <div class="card"><div class="ch"><span class="ct">سوابق حقوق</span></div><div class="tbl"><table><thead><tr><th>شماره</th><th>پرسنل</th><th>دوره</th><th>روز</th><th>مبلغ</th><th>وضعیت</th></tr></thead><tbody id="pr-list"></tbody></table></div></div>
+  </div>
+
+  <!-- REP LEDGER -->
+  <div class="pg" id="p-rep-ledger">
+    <div class="ph"><div class="ph-t">معین طرف حساب</div><div class="ph-s">گردش حساب کامل هر شخص</div></div>
+    <div class="card">
+      <div class="fg f2">
+        <div class="fl"><label>طرف حساب</label><select id="lg-party" onchange="loadLedger()"><option value="">— انتخاب —</option></select></div>
+        <div class="fl" style="justify-content:flex-end"><button class="btn bp" onclick="loadLedger()" style="justify-content:center"><i class="ti ti-search"></i>نمایش گردش</button></div>
+      </div>
+      <div id="ledger-result"><div class="empty"><i class="ti ti-book"></i>یک طرف حساب انتخاب کنید</div></div>
+    </div>
+  </div>
+
+  <!-- REP KARDEX -->
+  <div class="pg" id="p-rep-kardex">
+    <div class="ph"><div class="ph-t">کاردکس کالا</div><div class="ph-s">تاریخچه ورود، خروج و قیمت هر ماده اولیه</div></div>
+    <div class="card">
+      <div class="fg f2">
+        <div class="fl"><label>ماده اولیه</label><select id="kx-mat" onchange="loadKardex()"><option value="">— انتخاب —</option></select></div>
+        <div class="fl" style="justify-content:flex-end"><button class="btn bp" onclick="loadKardex()" style="justify-content:center"><i class="ti ti-search"></i>نمایش کاردکس</button></div>
+      </div>
+      <div id="kardex-result"><div class="empty"><i class="ti ti-history"></i>یک ماده اولیه انتخاب کنید</div></div>
+    </div>
+  </div>
+
+  <!-- REP VARIANCE -->
+  <div class="pg" id="p-rep-variance">
+    <div class="ph"><div class="ph-t">گزارش انحراف تولید</div><div class="ph-s">مصرف تئوریک (رسپی×فروش) در مقابل مصرف واقعی (انبارگردانی)</div></div>
+    <div class="ib"><b>انحراف =</b> مصرف واقعی − مصرف تئوریک | انحراف مثبت یعنی مصرف بیش از حد (ضایعات/پرت/خطا)</div>
+    <div class="card">
+      <div class="fg f2">
+        <div class="fl"><label>دوره</label><input id="vr-period" placeholder="2026-06"></div>
+        <div class="fl" style="justify-content:flex-end"><button class="btn bp" onclick="loadVariance()" style="justify-content:center"><i class="ti ti-calculator"></i>محاسبه انحراف</button></div>
+      </div>
+      <div id="variance-result"><div class="empty"><i class="ti ti-arrows-diff"></i>دوره را وارد کنید</div></div>
+    </div>
+  </div>
+
+  <!-- REP SALES -->
+  <div class="pg" id="p-rep-sales">
+    <div class="ph"><div class="ph-t">گزارش فروش</div><div class="ph-s">به تفکیک گروه و محصول</div></div>
+    <div class="card">
+      <div class="fg f3">
+        <div class="fl"><label>از تاریخ</label><input type="date" id="rs-from"></div>
+        <div class="fl"><label>تا تاریخ</label><input type="date" id="rs-to"></div>
+        <div class="fl" style="justify-content:flex-end"><button class="btn bp" onclick="loadSalesReport()" style="justify-content:center"><i class="ti ti-search"></i>گزارش</button></div>
+      </div>
+      <div id="sales-result"><div class="empty"><i class="ti ti-chart-bar"></i>بازه تاریخ را انتخاب کنید</div></div>
+    </div>
+  </div>
+
+  <!-- REP P&L -->
+  <div class="pg" id="p-rep-pl">
+    <div class="ph"><div class="ph-t">صورت سود و زیان</div><div class="ph-s">درآمد − هزینه</div></div>
+    <div class="card">
+      <button class="btn bp" onclick="loadPL()"><i class="ti ti-calculator"></i>محاسبه سود و زیان</button>
+      <div id="pl-result" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <!-- USERS -->
+  <div class="pg" id="p-users">
+    <div class="ph"><div class="ph-t">مدیریت کاربران</div><div class="ph-s">ساخت کاربر و تعیین سطح دسترسی</div></div>
+    <div class="card">
+      <div class="ch"><span class="ct">کاربران سیستم</span><button class="btn bp" onclick="openUserModal()"><i class="ti ti-user-plus"></i>کاربر جدید</button></div>
+      <div class="tbl"><table><thead><tr><th>نام کاربری</th><th>نام کامل</th><th>نقش</th><th>دسترسی‌ها</th><th>وضعیت</th><th></th></tr></thead><tbody id="users-tb"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- BACKUP -->
+  <div class="pg" id="p-backup">
+    <div class="ph"><div class="ph-t">بکاپ و بازیابی</div><div class="ph-s">از همه اطلاعات نسخه پشتیبان بگیرید — برای حسابداری ضروری است</div></div>
+    <div class="ib"><b>توصیه:</b> هفته‌ای یک بار بکاپ کامل بگیرید و فایل را جای امن (گوگل‌درایو، فلش) نگه دارید. اگر دیتابیس خراب شود، با همین فایل برمی‌گردانید.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="card" style="margin:0">
+        <div class="ch"><span class="ct"><i class="ti ti-download" style="color:var(--green)"></i> دانلود بکاپ کامل</span></div>
+        <p style="font-size:12px;color:var(--tx2);line-height:1.9;margin-bottom:14px">همه جدول‌ها (فاکتورها، اسناد، موجودی، تعریفات، حقوق...) در یک فایل JSON دانلود می‌شود.</p>
+        <button class="btn bs" onclick="doBackup()" id="backup-btn" style="width:100%;justify-content:center;padding:10px"><i class="ti ti-database-export"></i>دانلود بکاپ کامل</button>
+        <div id="backup-status" style="font-size:11px;color:var(--tx3);margin-top:10px;text-align:center"></div>
+      </div>
+      <div class="card" style="margin:0">
+        <div class="ch"><span class="ct"><i class="ti ti-upload" style="color:var(--amber)"></i> بازیابی از فایل</span></div>
+        <p style="font-size:12px;color:var(--tx2);line-height:1.9;margin-bottom:14px">فایل بکاپ را انتخاب کنید. <b style="color:var(--red)">هشدار:</b> داده‌های فعلی با فایل بکاپ جایگزین می‌شوند.</p>
+        <input type="file" id="restore-file" accept=".json" style="display:none" onchange="doRestore(this)">
+        <button class="btn bam" onclick="document.getElementById('restore-file').click()" style="width:100%;justify-content:center;padding:10px"><i class="ti ti-database-import"></i>انتخاب فایل بکاپ</button>
+        <div id="restore-status" style="font-size:11px;color:var(--tx3);margin-top:10px;text-align:center"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ct">بکاپ سریع اکسل (هر بخش جدا)</span></div>
+      <p style="font-size:12px;color:var(--tx2);margin-bottom:12px">خروجی اکسل از هر بخش برای بایگانی یا کار در اکسل:</p>
+      <div class="bg">
+        <button class="btn" onclick="backupExcel('vouchers')"><i class="ti ti-file-spreadsheet"></i>اسناد حسابداری</button>
+        <button class="btn" onclick="backupExcel('purchase_invoices')"><i class="ti ti-file-spreadsheet"></i>فاکتورهای خرید</button>
+        <button class="btn" onclick="backupExcel('sales_invoices')"><i class="ti ti-file-spreadsheet"></i>فاکتورهای فروش</button>
+        <button class="btn" onclick="backupExcel('payroll_records')"><i class="ti ti-file-spreadsheet"></i>حقوق</button>
+        <button class="btn" onclick="backupExcel('stock_movements')"><i class="ti ti-file-spreadsheet"></i>گردش انبار</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- USER MODAL -->
+<div class="mbg" id="user-modal" onclick="if(event.target===this)cm('user-modal')">
+  <div class="modal">
+    <div class="mh"><span class="mt" id="um-title">کاربر جدید</span><button class="btn" onclick="cm('user-modal')">✕</button></div>
+    <div class="fg f2">
+      <div class="fl"><label>نام کاربری *</label><input id="um-user" placeholder="مثلاً kazem"></div>
+      <div class="fl"><label>رمز عبور *</label><input id="um-pass" placeholder="••••"></div>
+    </div>
+    <div class="fg f2">
+      <div class="fl"><label>نام کامل</label><input id="um-name" placeholder="..."></div>
+      <div class="fl"><label>نقش</label><select id="um-role" onchange="toggleRolePerms()"><option value="employee">کارمند</option><option value="manager">مدیر</option></select></div>
+    </div>
+    <div id="um-perms-section">
+      <label style="font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase">دسترسی‌ها (تیک بزنید)</label>
+      <div class="perm-grid" id="um-perms"></div>
+    </div>
+    <button class="btn bp" onclick="saveUser()" style="width:100%;justify-content:center;margin-top:16px"><i class="ti ti-check"></i>ذخیره کاربر</button>
+  </div>
+</div>
+
+<script>
+const SU='https://knobnksebpcttusbmbmn.supabase.co';
+const SK='sb_publishable_3z8aH4ElwM5kBkTe0lvs9A__I7QA1OL';
+const H={'apikey':SK,'Authorization':'Bearer '+SK,'Content-Type':'application/json','Prefer':'return=representation'};
+
+const PERMS=[
+  {k:'dashboard',n:'داشبورد'},{k:'purchase',n:'فاکتور خرید'},{k:'sales',n:'فاکتور فروش'},
+  {k:'emp_sales',n:'فروش به پرسنل'},{k:'inventory',n:'انبارگردانی'},{k:'payroll',n:'حقوق'},
+  {k:'rep_ledger',n:'معین طرف حساب'},{k:'rep_kardex',n:'کاردکس'},{k:'rep_variance',n:'انحراف تولید'},
+  {k:'rep_sales',n:'گزارش فروش'},{k:'rep_pl',n:'سود و زیان'}
+];
+
+let CURRENT_USER=null;
+let COA=[],MG=[],MATS=[],PG=[],PRODS=[],RCP=[],PARTIES=[],EMPS=[],USERS=[];
+let piLines=[],siLines=[],esLines=[];
+
+async function db(method,table,opts={}){
+  let url=`${SU}/rest/v1/${table}`;const p=new URLSearchParams();
+  if(opts.sel)p.set('select',opts.sel);if(opts.ord)p.set('order',opts.ord);if(opts.lim)p.set('limit',opts.lim);
+  if(opts.filter)Object.entries(opts.filter).forEach(([k,v])=>p.set(k,v));
+  if(p.toString())url+='?'+p.toString();
+  const r=await fetch(url,{method,headers:H,body:opts.b?JSON.stringify(opts.b):undefined});
+  if(!r.ok){const e=await r.text();let m=e;try{m=JSON.parse(e).message||e}catch(x){}throw new Error(m)}
+  const t=await r.text();return t?JSON.parse(t):[];
+}
+async function dbGet(t,c,v){const r=await fetch(`${SU}/rest/v1/${t}?${c}=eq.${encodeURIComponent(v)}`,{headers:{'apikey':SK,'Authorization':'Bearer '+SK}});return r.json()}
+async function dbPatch(t,c,v,b){const r=await fetch(`${SU}/rest/v1/${t}?${c}=eq.${encodeURIComponent(v)}`,{method:'PATCH',headers:H,body:JSON.stringify(b)});return r.json()}
+async function dbDel(t,c,v){await fetch(`${SU}/rest/v1/${t}?${c}=eq.${encodeURIComponent(v)}`,{method:'DELETE',headers:{'apikey':SK,'Authorization':'Bearer '+SK}})}
+async function nextNo(type){const rows=await dbGet('counters','type',type);if(!rows.length)return type.toUpperCase()+'-0001';const row=rows[0];const n=row.last_number+1;await dbPatch('counters','type',type,{last_number:n});return`${row.prefix}-${row.year}-${String(n).padStart(4,'0')}`}
+const fmt=v=>'₺'+(+v||0).toLocaleString('en',{maximumFractionDigits:2});
+const today=()=>new Date().toISOString().slice(0,10);
+const period=()=>new Date().toISOString().slice(0,7);
+
+// ═══ تاریخ روز/ماه/سال میلادی ═══
+function fmtDate(d){if(!d)return '—';const p=String(d).slice(0,10).split('-');if(p.length!==3)return d;return `${p[2]}/${p[1]}/${p[0]}`}
+
+// ═══ خروجی اکسل (CSV با UTF-8 BOM برای فارسی) ═══
+function exportExcel(filename,headers,rows){
+  let csv='\uFEFF';
+  csv+=headers.join(',')+'\n';
+  rows.forEach(r=>{csv+=r.map(c=>{const s=String(c==null?'':c).replace(/"/g,'""');return /[",\n]/.test(s)?`"${s}"`:s}).join(',')+'\n'});
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename+'.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  toast('✓ فایل اکسل دانلود شد');
+}
+// ═══ تبدیل متن paste شده از اکسل به آرایه ═══
+function parsePaste(text){
+  return text.trim().split(/\r?\n/).map(line=>line.split('\t'));
+}
+// ═══ دانلود فرمت نمونه اکسل ═══
+function downloadTemplate(filename,headers,sample){
+  let csv='\uFEFF'+headers.join(',')+'\n';
+  if(sample)sample.forEach(r=>csv+=r.join(',')+'\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename+'.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  toast('✓ فرمت نمونه دانلود شد — پر کن و paste کن');
+}
+function tmplPurchase(){downloadTemplate('فرمت_فاکتور_خرید',['نام ماده اولیه','تعداد','قیمت واحد'],[['شیر','10','25'],['قهوه','5','120']])}
+function tmplSale(){downloadTemplate('فرمت_فاکتور_فروش',['نام محصول','تعداد','قیمت'],[['لاته','3','80'],['آب پرتقال','2','60']])}
+function chip(s,l){const m={active:'cs',inactive:'cd',posted:'cs',draft:'cw',paid:'cs',manager:'cp',employee:'ci'};return`<span class="chip ${m[s]||'ci'}">${l||s}</span>`}
+function toast(msg,tp='ok'){document.querySelectorAll('.toast').forEach(e=>e.remove());const e=document.createElement('div');e.className='toast';e.style.background=tp==='err'?'rgba(241,96,99,.95)':tp==='warn'?'rgba(245,166,35,.9)':'rgba(20,30,55,.98)';e.textContent=msg;document.body.appendChild(e);setTimeout(()=>e.remove(),3500)}
+function om(id){document.getElementById(id).classList.add('open')}
+function cm(id){document.getElementById(id).classList.remove('open')}
+document.addEventListener('click',e=>{if(!e.target.closest('.ac-wrap'))document.querySelectorAll('.ac-dd').forEach(d=>d.classList.remove('show'))});
+
+// ═══ LOGIN ═══
+async function doLogin(){
+  const u=document.getElementById('lg-user').value.trim();
+  const p=document.getElementById('lg-pass').value.trim();
+  const err=document.getElementById('lg-err');
+  if(!u||!p){err.style.display='block';err.textContent='نام کاربری و رمز را وارد کنید';return}
+  try{
+    const resp=await fetch(`${SU}/rest/v1/app_users?username=eq.${encodeURIComponent(u)}`,{headers:{'apikey':SK,'Authorization':'Bearer '+SK}});
+    if(!resp.ok){const t=await resp.text();err.style.display='block';err.textContent='خطای دیتابیس: '+t;return}
+    const rows=await resp.json();
+    if(!Array.isArray(rows)){err.style.display='block';err.textContent='پاسخ نامعتبر از سرور';return}
+    if(!rows.length){err.style.display='block';err.textContent='کاربری با این نام یافت نشد';return}
+    if(String(rows[0].password)!==String(p)){err.style.display='block';err.textContent='رمز اشتباه است';return}
+    if(rows[0].is_active===false){err.style.display='block';err.textContent='این کاربر غیرفعال است';return}
+    CURRENT_USER=rows[0];
+    sessionStorage.setItem('hesabyar_user',JSON.stringify(CURRENT_USER));
+    startApp();
+  }catch(e){err.style.display='block';err.textContent='خطا: '+e.message}
+}
+function logout(){sessionStorage.removeItem("hesabyar_user");location.reload()}
+function startApp(){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('appnav').style.display='flex';
+  document.getElementById('tabbar').style.display='flex';
+  document.getElementById('appwrap').style.display='flex';
+  document.getElementById('uname').textContent=CURRENT_USER.full_name||CURRENT_USER.username;
+  applyPermissions();
+  renderTabs();
+  conn();
+}
+function applyPermissions(){
+  const isManager=CURRENT_USER.role==='manager';
+  const perms=CURRENT_USER.permissions||{};
+  const all=isManager||perms.all===true;
+  document.querySelectorAll('[data-admin]').forEach(el=>{el.style.display=isManager?'':'none'});
+  document.querySelectorAll('.si[data-perm]').forEach(el=>{
+    const perm=el.dataset.perm;
+    if(all||perms[perm]===true||perm==='dashboard'){el.classList.remove('hidden')}
+    else{el.classList.add('hidden')}
+  });
+}
+
+// ═══ CONNECTION ═══
+async function conn(){
+  const b=document.getElementById('cbadge');
+  try{await db('GET','app_settings',{lim:1});b.className='badge bok';b.textContent='● متصل';await loadAll()}
+  catch(e){b.className='badge berr';b.textContent='● خطا';toast('خطا اتصال: '+e.message,'err')}
+}
+async function loadAll(){
+  await Promise.all([
+    db('GET','coa',{ord:'code.asc'}).then(d=>COA=d),
+    db('GET','material_groups',{ord:'code.asc'}).then(d=>MG=d),
+    db('GET','raw_materials',{ord:'code.asc'}).then(d=>MATS=d),
+    db('GET','product_groups',{ord:'code.asc'}).then(d=>PG=d),
+    db('GET','products',{ord:'code.asc'}).then(d=>PRODS=d),
+    db('GET','recipe_cards',{}).then(d=>RCP=d),
+    db('GET','parties',{ord:'code.asc'}).then(d=>PARTIES=d),
+    db('GET','employees',{ord:'emp_code.asc'}).then(d=>EMPS=d)
+  ]);
+  populateSelects();
+  loadDash();
+  if(CURRENT_USER.role==='manager')loadUsers();
+}
+function populateSelects(){
+  // employees
+  ['es-emp','pr-emp'].forEach(id=>{const s=document.getElementById(id);if(s){s.innerHTML='<option value="">— انتخاب —</option>'+EMPS.map(e=>`<option value="${e.id}">${e.name}</option>`).join('')}});
+  // parties for ledger
+  const lg=document.getElementById('lg-party');if(lg)lg.innerHTML='<option value="">— انتخاب —</option>'+PARTIES.map(p=>`<option value="${p.id}">${p.name} (${p.code})</option>`).join('')+EMPS.map(e=>`<option value="emp:${e.id}">${e.name} (پرسنل)</option>`).join('');
+  // materials for kardex
+  const kx=document.getElementById('kx-mat');if(kx)kx.innerHTML='<option value="">— انتخاب —</option>'+MATS.map(m=>`<option value="${m.id}">${m.name_fa} (${m.code})</option>`).join('');
+  // periods
+  document.getElementById('ic-period').value=period();
+  document.getElementById('vr-period').value=period();
+  document.getElementById('pr-period').value=period();
+  ['pi-date','si-date','es-date','ic-date','pr-date'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=today()});
+}
+
+// ═══ NAV ═══
+// ═══ سیستم تب ═══
+const TAB_INFO={
+  dash:{t:'داشبورد',i:'ti-layout-dashboard'},purchase:{t:'فاکتور خرید',i:'ti-shopping-cart'},
+  sales:{t:'فاکتور فروش',i:'ti-file-invoice'},'emp-sales':{t:'فروش به پرسنل',i:'ti-user-dollar'},
+  inventory:{t:'انبارگردانی',i:'ti-clipboard-check'},payroll:{t:'حقوق و دستمزد',i:'ti-cash'},
+  'rep-ledger':{t:'معین طرف حساب',i:'ti-book'},'rep-kardex':{t:'کاردکس کالا',i:'ti-history'},
+  'rep-variance':{t:'انحراف تولید',i:'ti-arrows-diff'},'rep-sales':{t:'گزارش فروش',i:'ti-chart-bar'},
+  'rep-pl':{t:'سود و زیان',i:'ti-trending-up'},users:{t:'مدیریت کاربران',i:'ti-users-group'},
+  backup:{t:'بکاپ و بازیابی',i:'ti-database-export'},
+  // تب‌های تعریفات (در فایل setup.html)
+  'mat-groups':{t:'گروه مواد',i:'ti-folder'},'materials':{t:'مواد اولیه',i:'ti-package'},
+  'prod-groups':{t:'گروه محصول',i:'ti-folder'},'products':{t:'محصولات',i:'ti-coffee'},
+  'recipes':{t:'رسپی کارد',i:'ti-clipboard-list'},'suppliers':{t:'تامین‌کنندگان',i:'ti-truck'},
+  'customers':{t:'مشتریان',i:'ti-users'},'employees':{t:'پرسنل',i:'ti-id-badge'},
+  'coa':{t:'دفتر حساب‌ها',i:'ti-list-numbers'}
+};
+let openTabs=JSON.parse(sessionStorage.getItem('hesabyar_tabs')||'["dash"]');let activeTab='dash';
+function saveTabs(){sessionStorage.setItem('hesabyar_tabs',JSON.stringify(openTabs))}
+
+function gp(id,el){
+  if(!openTabs.includes(id))openTabs.push(id);
+  activeTab=id;saveTabs();
+  showPage(id);
+  renderTabs();
+  // فعال کردن منوی کناری مربوطه
+  document.querySelectorAll('.si').forEach(n=>n.classList.remove('on'));
+  document.querySelector(`.si[onclick*="'${id}'"]`)?.classList.add('on');
+  const map={dash:loadDash,purchase:initPurchase,sales:initSales,'emp-sales':initEmpSales,users:loadUsers,
+    'mat-groups':loadMG,'materials':loadMats,'prod-groups':loadPG,'products':loadProds,'recipes':loadRcp,
+    'suppliers':()=>loadParties('supplier'),'customers':()=>loadParties('customer'),'employees':loadEmps,'coa':()=>loadCOA(false)};
+  map[id]?.();
+}
+function showPage(id){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p-'+id)?.classList.add('on');
+  activeTab=id;
+}
+function switchTab(id){
+  const info=TAB_INFO[id];
+  // اگه تب مال فایل دیگه‌ست، برو به اون فایل
+  if(info&&info.file){activeTab=id;saveTabs();location.href=info.file+'#'+id;return}
+  activeTab=id;saveTabs();showPage(id);renderTabs();
+  document.querySelectorAll('.si').forEach(n=>n.classList.remove('on'));
+  document.querySelector(`.si[onclick*="'${id}'"]`)?.classList.add('on');
+}
+function closeTab(id,ev){
+  if(ev)ev.stopPropagation();
+  if(openTabs.length<=1)return; // حداقل یک تب باز بمونه
+  const idx=openTabs.indexOf(id);
+  openTabs=openTabs.filter(t=>t!==id);saveTabs();
+  if(activeTab===id){
+    const next=openTabs[Math.max(0,idx-1)];
+    switchTab(next);
+  }else{renderTabs()}
+}
+function renderTabs(){
+  const bar=document.getElementById('tabbar');
+  bar.innerHTML=openTabs.map(id=>{
+    const info=TAB_INFO[id]||{t:id,i:'ti-file'};
+    return `<div class="tab ${id===activeTab?'on':''}" onclick="switchTab('${id}')">
+      <i class="ti ${info.i} tab-ic"></i>${info.t}
+      ${openTabs.length>1?`<span class="tab-x" onclick="closeTab('${id}',event)"><i class="ti ti-x"></i></span>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ═══ DASHBOARD ═══
+async function loadDash(){
+  try{
+    const sales=await db('GET','sales_invoices',{ord:'date.desc',lim:50});
+    const purch=await db('GET','purchase_invoices',{ord:'date.desc',lim:50});
+    const td=today(),pd=period();
+    document.getElementById('d-sales').textContent=fmt(sales.filter(s=>s.date===td).reduce((a,s)=>a+(+s.total||0),0));
+    document.getElementById('d-msales').textContent=fmt(sales.filter(s=>(s.date||'').startsWith(pd)).reduce((a,s)=>a+(+s.total||0),0));
+    document.getElementById('d-mpurch').textContent=fmt(purch.filter(p=>(p.date||'').startsWith(pd)).reduce((a,p)=>a+(+p.total||0),0));
+    document.getElementById('d-emps').textContent=EMPS.filter(e=>e.status==='active').length;
+    const recent=[...sales.slice(0,5).map(s=>({...s,_t:'فروش',_c:'cs'})),...purch.slice(0,5).map(p=>({...p,_t:'خرید',_c:'cp'}))].sort((a,b)=>(b.date||'').localeCompare(a.date||'')).slice(0,8);
+    document.getElementById('d-recent').innerHTML=recent.length?`<div class="tbl"><table><thead><tr><th>نوع</th><th>شماره</th><th>تاریخ</th><th>مبلغ</th></tr></thead><tbody>${recent.map(r=>`<tr><td><span class="chip ${r._c}">${r._t}</span></td><td class="mono">${r.invoice_no}</td><td>${fmtDate(r.date)}</td><td style="font-weight:600">${fmt(r.total)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">هنوز فاکتوری ثبت نشده</div>';
+  }catch(e){toast('خطا داشبورد','err')}
+}
+
+// ═══ AUTOCOMPLETE PARTY ═══
+function acParty(inp,dd,hid,type){
+  const q=document.getElementById(inp).value.toLowerCase();const el=document.getElementById(dd);
+  if(q.length<1){el.classList.remove('show');return}
+  const list=PARTIES.filter(p=>(p.party_type===type||p.party_type==='both')&&(p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)));
+  if(!list.length){el.classList.remove('show');return}
+  el.innerHTML=list.slice(0,8).map(p=>`<div class="ac-item" onclick="selParty('${inp}','${hid}','${p.id}','${p.name.replace(/'/g,"")}','${p.code}')"><span class="ac-code">${p.code}</span>${p.name}</div>`).join('');
+  el.classList.add('show');
+}
+function selParty(inp,hid,id,name,code){document.getElementById(inp).value=code+' — '+name;document.getElementById(hid).value=id;document.querySelectorAll('.ac-dd').forEach(d=>d.classList.remove('show'))}
+
+// ═══ PURCHASE ═══
+function initPurchase(){if(!piLines.length)addPiLine();renderPiList()}
+function addPiLine(){piLines.push({mat:'',qty:1,price:0});renderPiLines()}
+// paste از اکسل: نام ماده | تعداد | قیمت
+async function pastePiFromExcel(){
+  let text='';
+  try{text=await navigator.clipboard.readText()}
+  catch(e){text=prompt('محتوای کپی‌شده از اکسل را اینجا paste کنید (Ctrl+V):')||''}
+  if(!text.trim()){toast('چیزی برای paste نیست','warn');return}
+  const rows=parsePaste(text);
+  let added=0,created=0;
+  for(const r of rows){
+    const name=(r[0]||'').trim();if(!name)continue;
+    const qty=parseFloat(r[1])||1;
+    const price=parseFloat(r[2])||0;
+    // پیدا کردن ماده اولیه با نام
+    let mat=MATS.find(m=>m.name_fa.trim()===name||m.name_tr?.trim()===name);
+    if(!mat){
+      // ساخت خودکار ماده اولیه با کد جنریت‌شده
+      try{
+        const grp=MG[0]; // گروه پیش‌فرض اول
+        if(!grp){toast('اول حداقل یک گروه مواد اولیه بسازید','warn');return}
+        const cnt=MATS.filter(m=>m.group_id===grp.id).length+1;
+        const coa=`${grp.asset_coa_code}.${String(cnt).padStart(3,'0')}`;
+        const code='RM-'+String(MATS.length+1).padStart(4,'0');
+        await db('POST','coa',{b:{code:coa,parent_code:grp.asset_coa_code,name_fa:name,account_type:'asset',normal_balance:'debit',is_group:false,level:4,is_system:false}}).catch(()=>{});
+        const [nm]=await db('POST','raw_materials',{b:{code,name_fa:name,group_id:grp.id,coa_code:coa,unit:'adet',current_stock:0,avg_cost:price,is_active:true}});
+        MATS.push(nm);mat=nm;created++;
+      }catch(e){continue}
+    }
+    piLines.push({mat:mat.id,qty,price});added++;
+  }
+  // حذف ردیف‌های خالی اول و تکراری‌ها (نگه‌داشتن اولین)
+  piLines=piLines.filter(l=>l.mat);
+  const seen=new Set();piLines=piLines.filter(l=>{if(seen.has(l.mat))return false;seen.add(l.mat);return true});
+  if(!piLines.length)addPiLine();else renderPiLines();
+  toast(`✓ ${added} ردیف اضافه شد${created?` | ${created} ماده جدید ساخته شد`:''}`);
+}
+function renderPiLines(){
+  const c=document.getElementById('pi-lines');c.innerHTML='';
+  piLines.forEach((ln,i)=>{
+    const d=document.createElement('div');d.className='il';d.style.gridTemplateColumns='28px 2fr 90px 90px 90px 28px';
+    d.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--tx3);font-weight:700">${i+1}</div>
+    <select class="ii" onchange="piSet(${i},'mat',this.value)"><option value="">— ماده اولیه —</option>${MATS.map(m=>`<option value="${m.id}" ${m.id===ln.mat?'selected':''}>${m.name_fa}</option>`).join('')}</select>
+    <input class="ii" type="text" inputmode="decimal" value="${ln.qty}" oninput="piSet(${i},'qty',this.value)">
+    <input class="ii" type="text" inputmode="decimal" value="${ln.price}" oninput="piSet(${i},'price',this.value)">
+    <input class="ii ro" id="pi-lt-${i}" value="${fmt(ln.qty*ln.price)}" readonly>
+    <button class="rb" onclick="piDel(${i})" title="حذف ردیف"><i class="ti ti-trash"></i></button>`;
+    c.appendChild(d);
+  });
+  updatePiTotal();
+}
+function updatePiTotal(){document.getElementById('pi-total').textContent=fmt(piLines.reduce((a,l)=>a+(parseFloat(l.qty)||0)*(parseFloat(l.price)||0),0))}
+function piSet(i,f,v){
+  if(f==='mat'){
+    piLines[i].mat=v;
+    const m=MATS.find(x=>x.id===v);
+    if(m&&!piLines[i].price){piLines[i].price=+m.avg_cost||0;renderPiLines()}
+  }else{
+    // مقدار خام رو نگه دار (رشته) تا تایپ آزاد باشه؛ موقع محاسبه به عدد تبدیل میشه
+    piLines[i][f]=v;
+    const lt=document.getElementById('pi-lt-'+i);
+    if(lt)lt.value=fmt((parseFloat(piLines[i].qty)||0)*(parseFloat(piLines[i].price)||0));
+    updatePiTotal();
+  }
+}
+function piDel(i){piLines.splice(i,1);if(!piLines.length)addPiLine();else renderPiLines()}
+function clearPi(){piLines=[];document.getElementById('pi-si').value='';document.getElementById('pi-sq').value='';addPiLine()}
+async function postPurchase(){
+  const suppId=document.getElementById('pi-si').value;
+  // تبدیل مقادیر رشته‌ای به عدد
+  piLines.forEach(l=>{l.qty=parseFloat(l.qty)||0;l.price=parseFloat(l.price)||0});
+  const valid=piLines.filter(l=>l.mat&&l.qty>0);
+  if(!valid.length){toast('حداقل یک ردیف با ماده اولیه و تعداد لازم است','warn');return}
+  const total=valid.reduce((a,l)=>a+l.qty*l.price,0);
+  const pay=document.getElementById('pi-pay').value;
+  const date=document.getElementById('pi-date').value;
+  try{
+    const invNo=await nextNo('purchase');
+    const jvNo=await nextNo('journal');
+    // سند حسابداری
+    const [v]=await db('POST','vouchers',{b:{voucher_no:jvNo,voucher_type:'purchase',date,party_id:suppId||null,description:`فاکتور خرید ${invNo}`,total_debit:total,total_credit:total,status:'posted'}});
+    const vlines=[];
+    valid.forEach((l,i)=>{const m=MATS.find(x=>x.id===l.mat);vlines.push({voucher_id:v.id,line_no:i+1,coa_code:m?.coa_code||'1.2.1',party_id:null,description:`خرید ${m?.name_fa}`,debit:l.qty*l.price,credit:0})});
+    vlines.push({voucher_id:v.id,line_no:valid.length+1,coa_code:pay==='cash'?'1.1.1':'2.1.1',party_id:pay==='credit'?(suppId||null):null,description:pay==='cash'?'پرداخت نقد':'حساب پرداختنی',debit:0,credit:total});
+    await db('POST','voucher_lines',{b:vlines});
+    // فاکتور
+    const [inv]=await db('POST','purchase_invoices',{b:{voucher_id:v.id,invoice_no:invNo,date,period:date.slice(0,7),supplier_id:suppId||null,subtotal:total,total,balance:pay==='credit'?total:0,payment_method:pay,status:'posted'}});
+    await db('POST','purchase_lines',{b:valid.map((l,i)=>{const m=MATS.find(x=>x.id===l.mat);return{invoice_id:inv.id,line_no:i+1,material_id:l.mat,qty:+l.qty||0,unit:m?.unit||null,unit_price:+l.price||0,line_total:(+l.qty||0)*(+l.price||0)}})});
+    // بروزرسانی موجودی + کاردکس
+    for(const l of valid){
+      const m=MATS.find(x=>x.id===l.mat);
+      const newStock=(+m.current_stock||0)+l.qty;
+      const oldVal=(+m.current_stock||0)*(+m.avg_cost||0);
+      const newAvg=newStock>0?(oldVal+l.qty*l.price)/newStock:l.price;
+      await dbPatch('raw_materials','id',l.mat,{current_stock:newStock,avg_cost:newAvg,last_purchase_price:l.price});
+      const smNo=await nextNo('movement');
+      await db('POST','stock_movements',{b:{movement_no:smNo,movement_type:'purchase_in',date,period:date.slice(0,7),material_id:l.mat,qty:l.qty,unit_cost:l.price,total_cost:l.qty*l.price,balance_qty:newStock,avg_cost_after:newAvg,reference_type:'purchase',reference_id:inv.id,voucher_id:v.id}});
+      m.current_stock=newStock;m.avg_cost=newAvg;
+    }
+    toast(`✓ فاکتور ${invNo} ثبت شد + انبار بروز شد`);
+    clearPi();renderPiList();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+async function renderPiList(){
+  try{const list=await db('GET','purchase_invoices',{ord:'date.desc',lim:15});
+  document.getElementById('pi-list').innerHTML=list.length?list.map(p=>{const s=PARTIES.find(x=>x.id===p.supplier_id);return`<tr><td class="mono">${p.invoice_no}</td><td>${s?.name||'نقدی'}</td><td>${fmtDate(p.date)}</td><td style="font-weight:600">${fmt(p.total)}</td><td>${chip(p.payment_method==='cash'?'paid':'draft',p.payment_method==='cash'?'نقد':'نسیه')}</td></tr>`}).join(''):'<tr><td colspan="5" class="empty">فاکتوری نیست</td></tr>'}catch(e){}
+}
+
+// ═══ SALES ═══
+function initSales(){if(!siLines.length)addSiLine();renderSiList()}
+function addSiLine(){siLines.push({prod:'',qty:1,price:0});renderSiLines()}
+// paste از اکسل: نام محصول | تعداد | قیمت
+async function pasteSiFromExcel(){
+  let text='';
+  try{text=await navigator.clipboard.readText()}
+  catch(e){text=prompt('محتوای کپی‌شده از اکسل را اینجا paste کنید (Ctrl+V):')||''}
+  if(!text.trim()){toast('چیزی برای paste نیست','warn');return}
+  const rows=parsePaste(text);let added=0,skipped=0;
+  for(const r of rows){
+    const name=(r[0]||'').trim();if(!name)continue;
+    const qty=parseFloat(r[1])||1;
+    const price=parseFloat(r[2])||0;
+    const prod=PRODS.find(p=>p.name_fa.trim()===name||p.name_tr?.trim()===name);
+    if(!prod){skipped++;continue} // محصول پیدا نشد
+    if(siLines.find(l=>l.prod===prod.id)){skipped++;continue} // تکراری
+    siLines.push({prod:prod.id,qty,price:price||+prod.sell_price||0});added++;
+  }
+  siLines=siLines.filter(l=>l.prod);
+  if(!siLines.length)addSiLine();else renderSiLines();
+  toast(`✓ ${added} ردیف اضافه شد${skipped?` | ${skipped} محصول پیدا نشد`:''}`);
+}
+function renderSiLines(){
+  const c=document.getElementById('si-lines');c.innerHTML='';
+  siLines.forEach((ln,i)=>{
+    const d=document.createElement('div');d.className='il';d.style.gridTemplateColumns='28px 2fr 90px 90px 90px 28px';
+    d.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--tx3);font-weight:700">${i+1}</div>
+    <select class="ii" onchange="siSet(${i},'prod',this.value)"><option value="">— محصول —</option>${PRODS.map(p=>`<option value="${p.id}" ${p.id===ln.prod?'selected':''}>${p.name_fa}</option>`).join('')}</select>
+    <input class="ii" type="text" inputmode="decimal" value="${ln.qty}" oninput="siSet(${i},'qty',this.value)">
+    <input class="ii" type="text" inputmode="decimal" value="${ln.price}" oninput="siSet(${i},'price',this.value)">
+    <input class="ii ro" id="si-lt-${i}" value="${fmt(ln.qty*ln.price)}" readonly>
+    <button class="rb" onclick="siDel(${i})" title="حذف ردیف"><i class="ti ti-trash"></i></button>`;
+    c.appendChild(d);
+  });
+  updateSiTotal();
+}
+function updateSiTotal(){calcSiSummary()}
+function calcSiSummary(){
+  const sub=siLines.reduce((a,l)=>a+(parseFloat(l.qty)||0)*(parseFloat(l.price)||0),0);
+  const discPct=parseFloat(document.getElementById('si-disc')?.value)||0;
+  const kdvPct=parseFloat(document.getElementById('si-kdv')?.value)||0;
+  const discAmt=sub*discPct/100;
+  const afterDisc=sub-discAmt;
+  const kdvAmt=afterDisc*kdvPct/100;
+  const total=afterDisc+kdvAmt;
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=fmt(v)};
+  set('si-subtotal',sub);set('si-discamt',discAmt);set('si-afterdisc',afterDisc);set('si-kdvamt',kdvAmt);set('si-total',total);
+}
+function siSet(i,f,v){
+  if(f==='prod'){
+    siLines[i].prod=v;
+    const p=PRODS.find(x=>x.id===v);
+    if(p){siLines[i].price=+p.sell_price||0;renderSiLines()}
+  }else{
+    siLines[i][f]=v;
+    const lt=document.getElementById('si-lt-'+i);
+    if(lt)lt.value=fmt((parseFloat(siLines[i].qty)||0)*(parseFloat(siLines[i].price)||0));
+    updateSiTotal();
+  }
+}
+function siDel(i){siLines.splice(i,1);if(!siLines.length)addSiLine();else renderSiLines()}
+function clearSi(){siLines=[];document.getElementById('si-ci').value='';document.getElementById('si-cq').value='';const d=document.getElementById('si-disc');if(d)d.value='0';const k=document.getElementById('si-kdv');if(k)k.value='0';const n=document.getElementById('si-note');if(n)n.value='';addSiLine()}
+async function postSale(){
+  const custId=document.getElementById('si-ci').value;
+  siLines.forEach(l=>{l.qty=parseFloat(l.qty)||0;l.price=parseFloat(l.price)||0});
+  const valid=siLines.filter(l=>l.prod&&l.qty>0);
+  if(!valid.length){toast('حداقل یک محصول لازم است','warn');return}
+  const sub=valid.reduce((a,l)=>a+l.qty*l.price,0);
+  const discPct=parseFloat(document.getElementById('si-disc').value)||0;
+  const kdvPct=parseFloat(document.getElementById('si-kdv').value)||0;
+  const discAmt=sub*discPct/100;
+  const afterDisc=sub-discAmt;
+  const kdvAmt=afterDisc*kdvPct/100;
+  const total=afterDisc+kdvAmt;
+  const note=document.getElementById('si-note').value||'';
+  const pay=document.getElementById('si-pay').value;
+  const date=document.getElementById('si-date').value;
+  const drCoa=pay==='cash'?'1.1.1':pay==='card'?'1.1.2':'1.1.3';
+  try{
+    const invNo=await nextNo('sale');const jvNo=await nextNo('journal');
+    const [v]=await db('POST','vouchers',{b:{voucher_no:jvNo,voucher_type:'sale',date,party_id:custId||null,description:`فاکتور فروش ${invNo}`+(note?` - ${note}`:''),total_debit:total,total_credit:total,status:'posted'}});
+    // ردیف بدهکار: دریافت (مبلغ نهایی با KDV)
+    const vlines=[{voucher_id:v.id,line_no:1,coa_code:drCoa,party_id:pay==='credit'?(custId||null):null,description:'دریافت فروش',debit:total,credit:0}];
+    let ln=2;
+    // ردیف‌های بستانکار: درآمد هر محصول (به نسبت بعد از تخفیف)
+    const discFactor=sub>0?afterDisc/sub:1;
+    valid.forEach(l=>{const p=PRODS.find(x=>x.id===l.prod);vlines.push({voucher_id:v.id,line_no:ln++,coa_code:p?.coa_code||'4.1.1',party_id:null,description:`فروش ${p?.name_fa}`,debit:0,credit:l.qty*l.price*discFactor})});
+    // ردیف KDV بستانکار (اگه باشه)
+    if(kdvAmt>0)vlines.push({voucher_id:v.id,line_no:ln++,coa_code:'2.1.2',party_id:null,description:`KDV فروش (${kdvPct}%)`,debit:0,credit:kdvAmt});
+    await db('POST','voucher_lines',{b:vlines});
+    const [inv]=await db('POST','sales_invoices',{b:{voucher_id:v.id,invoice_no:invNo,date,period:date.slice(0,7),customer_id:custId||null,discount_pct:discPct,subtotal:sub,discount_amount:discAmt,kdv_total:kdvAmt,total,balance:pay==='credit'?total:0,payment_method:pay,cash_coa_code:drCoa,notes:note||null,status:'posted'}});
+    await db('POST','sales_lines',{b:valid.map((l,i)=>{const p=PRODS.find(x=>x.id===l.prod);return{invoice_id:inv.id,line_no:i+1,product_id:l.prod,qty:+l.qty||0,unit_price:+l.price||0,discount_pct:discPct,kdv_rate:kdvPct,line_total:(+l.qty||0)*(+l.price||0),revenue_coa_code:p?.coa_code||null}})});
+    toast(`✓ فاکتور فروش ${invNo} ثبت شد — ${fmt(total)}`);
+    clearSi();renderSiList();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+async function renderSiList(){
+  try{const list=await db('GET','sales_invoices',{ord:'date.desc',lim:15});
+  document.getElementById('si-list').innerHTML=list.length?list.map(s=>{const c=PARTIES.find(x=>x.id===s.customer_id);return`<tr><td class="mono">${s.invoice_no}</td><td>${c?.name||'نقدی'}</td><td>${fmtDate(s.date)}</td><td style="font-weight:600">${fmt(s.total)}</td><td>${chip(s.payment_method==='credit'?'draft':'paid',{cash:'نقد',card:'کارت',credit:'نسیه'}[s.payment_method]||s.payment_method)}</td></tr>`}).join(''):'<tr><td colspan="5" class="empty">فاکتوری نیست</td></tr>'}catch(e){}
+}
+
+// ═══ EMP SALES ═══
+function initEmpSales(){if(!esLines.length)addEsLine()}
+function updEsDiscount(){const e=EMPS.find(x=>x.id===document.getElementById('es-emp').value);if(e)document.getElementById('es-disc').value=e.food_discount_pct||20;calcEs()}
+function addEsLine(){esLines.push({prod:'',qty:1,price:0});renderEsLines()}
+function renderEsLines(){
+  const c=document.getElementById('es-lines');c.innerHTML='';
+  esLines.forEach((ln,i)=>{
+    const d=document.createElement('div');d.className='il';d.style.gridTemplateColumns='28px 2fr 90px 90px 90px 28px';
+    d.innerHTML=`<div style="display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--tx3);font-weight:700">${i+1}</div>
+    <select class="ii" onchange="esSet(${i},'prod',this.value)"><option value="">— محصول —</option>${PRODS.map(p=>`<option value="${p.id}" ${p.id===ln.prod?'selected':''}>${p.name_fa}</option>`).join('')}</select>
+    <input class="ii" type="text" inputmode="decimal" value="${ln.qty}" oninput="esSet(${i},'qty',this.value)">
+    <input class="ii" type="text" inputmode="decimal" value="${ln.price}" oninput="esSet(${i},'price',this.value)">
+    <input class="ii ro" id="es-lt-${i}" value="${fmt(ln.qty*ln.price)}" readonly>
+    <button class="rb" onclick="esDel(${i})" title="حذف ردیف"><i class="ti ti-trash"></i></button>`;
+    c.appendChild(d);
+  });
+  calcEs();
+}
+function esSet(i,f,v){
+  if(f==='prod'){
+    esLines[i].prod=v;
+    const p=PRODS.find(x=>x.id===v);
+    if(p){esLines[i].price=+p.sell_price||0;renderEsLines()}
+  }else{
+    esLines[i][f]=v;
+    const lt=document.getElementById('es-lt-'+i);
+    if(lt)lt.value=fmt((parseFloat(esLines[i].qty)||0)*(parseFloat(esLines[i].price)||0));
+    calcEs();
+  }
+}
+function esDel(i){esLines.splice(i,1);if(!esLines.length)addEsLine();else renderEsLines()}
+function calcEs(){const sub=esLines.reduce((a,l)=>a+(parseFloat(l.qty)||0)*(parseFloat(l.price)||0),0);const disc=+document.getElementById('es-disc').value||0;const discAmt=sub*disc/100;document.getElementById('es-sub').textContent=fmt(sub);document.getElementById('es-discount').textContent=fmt(discAmt);document.getElementById('es-total').textContent=fmt(sub-discAmt)}
+function clearEs(){esLines=[];addEsLine()}
+async function postEmpSale(){
+  const empId=document.getElementById('es-emp').value;
+  if(!empId){toast('پرسنل را انتخاب کنید','warn');return}
+  esLines.forEach(l=>{l.qty=parseFloat(l.qty)||0;l.price=parseFloat(l.price)||0});
+  const valid=esLines.filter(l=>l.prod&&l.qty>0);
+  if(!valid.length){toast('حداقل یک محصول لازم است','warn');return}
+  const emp=EMPS.find(e=>e.id===empId);
+  const sub=valid.reduce((a,l)=>a+l.qty*l.price,0);
+  const disc=+document.getElementById('es-disc').value||0;
+  const total=sub-(sub*disc/100);
+  const date=document.getElementById('es-date').value;
+  try{
+    const invNo=await nextNo('sale');const jvNo=await nextNo('journal');
+    const [v]=await db('POST','vouchers',{b:{voucher_no:jvNo,voucher_type:'sale',date,employee_id:empId,description:`فروش به پرسنل ${emp.name} - ${invNo}`,total_debit:total,total_credit:total,status:'posted'}});
+    const vlines=[{voucher_id:v.id,line_no:1,coa_code:emp.coa_payable,employee_id:empId,description:`بدهی غذای ${emp.name}`,debit:total,credit:0}];
+    valid.forEach((l,i)=>{const p=PRODS.find(x=>x.id===l.prod);const lineAfterDisc=l.qty*l.price*(1-disc/100);vlines.push({voucher_id:v.id,line_no:i+2,coa_code:p?.coa_code||'4.1.1',employee_id:null,description:`فروش ${p?.name_fa}`,debit:0,credit:lineAfterDisc})});
+    await db('POST','voucher_lines',{b:vlines});
+    await db('POST','sales_invoices',{b:{voucher_id:v.id,invoice_no:invNo,date,period:date.slice(0,7),employee_id:empId,is_employee_sale:true,discount_pct:disc,subtotal:sub,discount_amount:sub*disc/100,total,balance:total,payment_method:'employee_account',cash_coa_code:emp.coa_payable,status:'posted'}});
+    toast(`✓ فروش به ${emp.name} ثبت شد — ${fmt(total)} به حسابش`);
+    clearEs();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ INVENTORY ═══
+let icRows=[];
+async function loadInventoryCount(){
+  const pd=document.getElementById('ic-period').value;
+  // محاسبه موجودی اول دوره و خرید
+  icRows=MATS.map(m=>({mat:m,opening:+m.current_stock||0,physical:+m.current_stock||0,cost:+m.avg_cost||0}));
+  renderIcRows();
+}
+function renderIcRows(){
+  const tb=document.getElementById('ic-tb');
+  tb.innerHTML=icRows.length?icRows.map((r,i)=>{
+    const g=MG.find(x=>x.id===r.mat.group_id);
+    const consumed=r.opening-(parseFloat(r.physical)||0);
+    return`<tr>
+      <td><b>${r.mat.name_fa}</b></td>
+      <td>${g?`<span class="chip ct2">${g.name_fa}</span>`:'—'}</td>
+      <td>${r.opening.toFixed(3)} ${r.mat.unit}</td>
+      <td><input class="ii" type="text" inputmode="decimal" value="${r.physical}" style="width:90px" oninput="icSet(${i},this.value)"></td>
+      <td>${fmt(r.cost)}</td>
+      <td id="ic-cons-${i}" style="color:${consumed>0?'var(--amber)':'var(--tx3)'};font-weight:600">${consumed.toFixed(3)} ${r.mat.unit}<br><span style="font-size:10px">${fmt(consumed*r.cost)}</span></td>
+    </tr>`;
+  }).join(''):'<tr><td colspan="6" class="empty">ماده اولیه‌ای نیست</td></tr>';
+  updateIcTotal();
+}
+function updateIcTotal(){const totalCost=icRows.reduce((a,r)=>a+Math.max(0,r.opening-(parseFloat(r.physical)||0))*r.cost,0);document.getElementById('ic-total').textContent=fmt(totalCost)}
+function icSet(i,v){
+  icRows[i].physical=v; // مقدار خام
+  const consumed=icRows[i].opening-(parseFloat(v)||0);
+  const cell=document.getElementById('ic-cons-'+i);
+  if(cell)cell.innerHTML=`${consumed.toFixed(3)} ${icRows[i].mat.unit}<br><span style="font-size:10px">${fmt(consumed*icRows[i].cost)}</span>`;
+  updateIcTotal();
+}
+async function postInventory(){
+  if(!icRows.length){toast('اول مواد اولیه را بارگذاری کنید','warn');return}
+  const pd=document.getElementById('ic-period').value;
+  const date=document.getElementById('ic-date').value;
+  icRows.forEach(r=>{r.physical=parseFloat(r.physical)||0});
+  const consumed=icRows.filter(r=>r.opening-r.physical>0);
+  if(!consumed.length){toast('هیچ مصرفی محاسبه نشد','warn');return}
+  try{
+    const icNo=await nextNo('inventory');const cvNo=await nextNo('consumption');const jvNo=await nextNo('journal');
+    const totalCost=consumed.reduce((a,r)=>a+(r.opening-r.physical)*r.cost,0);
+    // سند مصرف: هزینه بدهکار، موجودی بستانکار (به تفکیک گروه)
+    const [v]=await db('POST','vouchers',{b:{voucher_no:jvNo,voucher_type:'consumption',date,period:pd,description:`حواله مصرف انبارگردانی ${pd}`,total_debit:totalCost,total_credit:totalCost,status:'posted'}});
+    const byGroup={};
+    consumed.forEach(r=>{const g=MG.find(x=>x.id===r.mat.group_id);const cost=(r.opening-r.physical)*r.cost;if(g){if(!byGroup[g.id])byGroup[g.id]={exp:g.expense_coa_code,asset:g.asset_coa_code,name:g.name_fa,cost:0};byGroup[g.id].cost+=cost}});
+    const vlines=[];let ln=1;
+    Object.values(byGroup).forEach(grp=>{vlines.push({voucher_id:v.id,line_no:ln++,coa_code:grp.exp,description:`هزینه مصرف ${grp.name}`,debit:grp.cost,credit:0})});
+    Object.values(byGroup).forEach(grp=>{vlines.push({voucher_id:v.id,line_no:ln++,coa_code:grp.asset,description:`کاهش موجودی ${grp.name}`,debit:0,credit:grp.cost})});
+    await db('POST','voucher_lines',{b:vlines});
+    // ثبت consumption
+    const [cv]=await db('POST','consumption_vouchers',{b:{voucher_no:cvNo,period:pd,date,accounting_voucher_id:v.id,total_cost:totalCost,status:'posted'}});
+    await db('POST','consumption_lines',{b:consumed.map(r=>{const g=MG.find(x=>x.id===r.mat.group_id);return{consumption_id:cv.id,material_id:r.mat.id,opening_qty:r.opening,closing_qty:r.physical,consumed_qty:r.opening-r.physical,unit_cost:r.cost,total_cost:(r.opening-r.physical)*r.cost,asset_coa_code:g?.asset_coa_code,expense_coa_code:g?.expense_coa_code}})});
+    // بروزرسانی موجودی + کاردکس
+    for(const r of consumed){
+      const smNo=await nextNo('movement');
+      await db('POST','stock_movements',{b:{movement_no:smNo,movement_type:'consumption_out',date,period:pd,material_id:r.mat.id,qty:-(r.opening-r.physical),unit_cost:r.cost,total_cost:(r.opening-r.physical)*r.cost,balance_qty:r.physical,avg_cost_after:r.cost,reference_type:'consumption',reference_id:cv.id,voucher_id:v.id}});
+      await dbPatch('raw_materials','id',r.mat.id,{current_stock:r.physical});
+      r.mat.current_stock=r.physical;
+    }
+    toast(`✓ انبارگردانی ثبت شد — مصرف: ${fmt(totalCost)}`);
+    icRows=[];renderIcRows();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ PAYROLL ═══
+function updPayroll(){const e=EMPS.find(x=>x.id===document.getElementById('pr-emp').value);if(e){document.getElementById('pr-daily').value=e.daily_rate||0}calcPayroll()}
+function calcPayroll(){const daily=+document.getElementById('pr-daily').value||0;const days=+document.getElementById('pr-days').value||0;const adj=+document.getElementById('pr-adj').value||0;document.getElementById('pr-total').textContent=fmt(daily*days+adj)}
+async function postPayroll(){
+  const empId=document.getElementById('pr-emp').value;
+  if(!empId){toast('پرسنل را انتخاب کنید','warn');return}
+  const emp=EMPS.find(e=>e.id===empId);
+  const daily=+document.getElementById('pr-daily').value||0;
+  const days=+document.getElementById('pr-days').value||0;
+  const adj=+document.getElementById('pr-adj').value||0;
+  const total=daily*days+adj;
+  if(total<=0){toast('مبلغ حقوق صفر است','warn');return}
+  const pd=document.getElementById('pr-period').value;
+  const date=document.getElementById('pr-date').value;
+  try{
+    const prNo=await nextNo('payroll');const jvNo=await nextNo('journal');
+    const [v]=await db('POST','vouchers',{b:{voucher_no:jvNo,voucher_type:'payroll',date,period:pd,employee_id:empId,description:`حقوق ${emp.name} - ${pd}`,total_debit:total,total_credit:total,status:'posted'}});
+    await db('POST','voucher_lines',{b:[
+      {voucher_id:v.id,line_no:1,coa_code:emp.coa_expense||'5.2.1',employee_id:empId,description:`هزینه حقوق ${emp.name}`,debit:total,credit:0},
+      {voucher_id:v.id,line_no:2,coa_code:emp.coa_payable,employee_id:empId,description:`پرداختنی حقوق ${emp.name}`,debit:0,credit:total}
+    ]});
+    await db('POST','payroll_records',{b:{payroll_no:prNo,period:pd,date,employee_id:empId,working_days:days,base_salary:emp.base_salary,calculated_salary:daily*days,bonus:adj>0?adj:0,deductions:adj<0?-adj:0,gross_salary:total,net_salary:total,voucher_id:v.id,status:'posted'}});
+    toast(`✓ سند حقوق ${emp.name} ثبت شد — ${fmt(total)}`);
+    renderPayrollList();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+async function renderPayrollList(){
+  try{const list=await db('GET','payroll_records',{ord:'date.desc',lim:15});
+  document.getElementById('pr-list').innerHTML=list.length?list.map(p=>{const e=EMPS.find(x=>x.id===p.employee_id);return`<tr><td class="mono">${p.payroll_no}</td><td>${e?.name||'—'}</td><td>${p.period}</td><td>${p.working_days}</td><td style="font-weight:600">${fmt(p.net_salary)}</td><td>${chip('posted','ثبت‌شده')}</td></tr>`}).join(''):'<tr><td colspan="6" class="empty">سندی نیست</td></tr>'}catch(e){}
+}
+
+// ═══ LEDGER ═══
+async function loadLedger(){
+  const val=document.getElementById('lg-party').value;if(!val){return}
+  let coaCode,name;
+  if(val.startsWith('emp:')){const e=EMPS.find(x=>x.id===val.slice(4));coaCode=e?.coa_payable;name=e?.name}
+  else{const p=PARTIES.find(x=>x.id===val);coaCode=p?.coa_code;name=p?.name}
+  if(!coaCode){document.getElementById('ledger-result').innerHTML='<div class="empty">این طرف حساب کد COA ندارد</div>';return}
+  try{
+    const lines=await db('GET','voucher_lines',{filter:{'coa_code':'eq.'+coaCode},ord:'created_at.asc'});
+    const vIds=[...new Set(lines.map(l=>l.voucher_id))];
+    const vouchers={};
+    for(const id of vIds){const vr=await dbGet('vouchers','id',id);if(vr.length)vouchers[id]=vr[0]}
+    let balance=0;
+    const rows=lines.map(l=>{balance+=(+l.debit)-(+l.credit);const v=vouchers[l.voucher_id];return{date:v?.date||'',no:v?.voucher_no||'',desc:l.description||v?.description||'',debit:+l.debit,credit:+l.credit,balance}});
+    window._ledgerExport=rows;window._ledgerName=name;
+    document.getElementById('ledger-result').innerHTML=`
+      <div class="ch"><span class="ct">${name} <span class="cpill">${coaCode}</span></span><button class="btn bs" onclick="exportExcel('معین_'+window._ledgerName,['تاریخ','سند','شرح','بدهکار','بستانکار','مانده'],window._ledgerExport.map(r=>[fmtDate(r.date),r.no,r.desc,r.debit,r.credit,r.balance]))"><i class="ti ti-file-spreadsheet"></i>خروجی اکسل</button></div>
+      <div class="tbl"><table><thead><tr><th>تاریخ</th><th>سند</th><th>شرح</th><th>بدهکار</th><th>بستانکار</th><th>مانده</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr><td>${fmtDate(r.date)}</td><td class="mono">${r.no}</td><td>${r.desc}</td><td style="color:var(--blue)">${r.debit?fmt(r.debit):'—'}</td><td style="color:var(--purple)">${r.credit?fmt(r.credit):'—'}</td><td style="font-weight:600;color:${r.balance>=0?'var(--green)':'var(--red)'}">${fmt(Math.abs(r.balance))} ${r.balance>=0?'بد':'بس'}</td></tr>`).join('')}
+      </tbody></table></div>
+      <div class="tb"><div class="tr2 fin"><span>مانده نهایی</span><span style="color:${balance>=0?'var(--green)':'var(--red)'}">${fmt(Math.abs(balance))} ${balance>=0?'بدهکار':'بستانکار'}</span></div></div>`;
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ KARDEX ═══
+async function loadKardex(){
+  const matId=document.getElementById('kx-mat').value;if(!matId)return;
+  const mat=MATS.find(m=>m.id===matId);
+  try{
+    const moves=await db('GET','stock_movements',{filter:{'material_id':'eq.'+matId},ord:'created_at.asc'});
+    window._kardexExport=moves;window._kardexMat=mat;
+    document.getElementById('kardex-result').innerHTML=`
+      <div style="font-size:14px;font-weight:700;margin:8px 0">${mat.name_fa} <span class="cpill">${mat.code}</span> — موجودی فعلی: ${(+mat.current_stock).toFixed(3)} ${mat.unit}</div>
+      <div class="ch"><span class="ct">گردش</span><button class="btn bs" onclick="exportExcel('کاردکس_'+window._kardexMat.name_fa,['شماره','تاریخ','نوع','تعداد','قیمت واحد','موجودی بعد'],window._kardexExport.map(m=>[m.movement_no,fmtDate(m.date),m.movement_type,m.qty,m.unit_cost,m.balance_qty]))"><i class="ti ti-file-spreadsheet"></i>خروجی اکسل</button></div>
+      <div class="tbl"><table><thead><tr><th>شماره</th><th>تاریخ</th><th>نوع</th><th>تعداد</th><th>قیمت واحد</th><th>موجودی بعد</th></tr></thead><tbody>
+      ${moves.length?moves.map(m=>{const tn={purchase_in:'ورود خرید',consumption_out:'مصرف',count_adjust:'تعدیل',manual_in:'ورود',manual_out:'خروج'}[m.movement_type]||m.movement_type;const isIn=m.qty>0;return`<tr><td class="mono">${m.movement_no}</td><td>${fmtDate(m.date)}</td><td><span class="chip ${isIn?'cs':'cd'}">${tn}</span></td><td style="color:${isIn?'var(--green)':'var(--red)'};font-weight:600">${isIn?'+':''}${m.qty} ${mat.unit}</td><td>${fmt(m.unit_cost)}</td><td style="font-weight:600">${(+m.balance_qty).toFixed(3)}</td></tr>`}).join(''):'<tr><td colspan="6" class="empty">گردشی ثبت نشده</td></tr>'}
+      </tbody></table></div>`;
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ VARIANCE ═══
+async function loadVariance(){
+  const pd=document.getElementById('vr-period').value;
+  try{
+    // مصرف واقعی از consumption
+    const consumptions=await db('GET','consumption_vouchers',{filter:{'period':'eq.'+pd}});
+    const actualByMat={};
+    for(const cv of consumptions){const cl=await db('GET','consumption_lines',{filter:{'consumption_id':'eq.'+cv.id}});cl.forEach(l=>{actualByMat[l.material_id]=(actualByMat[l.material_id]||0)+(+l.consumed_qty)})}
+    // مصرف تئوریک از فروش × رسپی
+    const sales=await db('GET','sales_invoices',{filter:{'period':'eq.'+pd}});
+    const soldQty={};
+    for(const s of sales){const sl=await db('GET','sales_lines',{filter:{'invoice_id':'eq.'+s.id}});sl.forEach(l=>{soldQty[l.product_id]=(soldQty[l.product_id]||0)+(+l.qty)})}
+    const theoByMat={};
+    Object.entries(soldQty).forEach(([pid,qty])=>{RCP.filter(r=>r.product_id===pid).forEach(r=>{theoByMat[r.raw_material_id]=(theoByMat[r.raw_material_id]||0)+qty*(+r.qty_per_unit)})});
+    const allMats=[...new Set([...Object.keys(actualByMat),...Object.keys(theoByMat)])];
+    const rows=allMats.map(mid=>{const m=MATS.find(x=>x.id===mid);const theo=theoByMat[mid]||0;const actual=actualByMat[mid]||0;const variance=actual-theo;const pct=theo>0?variance/theo*100:0;return{m,theo,actual,variance,pct,cost:(+m?.avg_cost||0)*variance}});
+    window._varExport=rows;
+    document.getElementById('variance-result').innerHTML=rows.length?`
+      <div class="ch"><span class="ct">انحراف دوره ${pd}</span><button class="btn bs" onclick="exportExcel('انحراف_'+'${pd}',['ماده اولیه','مصرف تئوریک','مصرف واقعی','انحراف','درصد','ارزش انحراف'],window._varExport.map(r=>[r.m?.name_fa||'',r.theo.toFixed(3),r.actual.toFixed(3),r.variance.toFixed(3),r.pct.toFixed(1)+'%',Math.abs(r.cost).toFixed(2)]))"><i class="ti ti-file-spreadsheet"></i>خروجی اکسل</button></div>
+      <div class="tbl"><table><thead><tr><th>ماده اولیه</th><th>مصرف تئوریک (رسپی)</th><th>مصرف واقعی (انبار)</th><th>انحراف</th><th>درصد</th><th>ارزش انحراف</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr><td><b>${r.m?.name_fa||'—'}</b></td><td>${r.theo.toFixed(3)} ${r.m?.unit||''}</td><td>${r.actual.toFixed(3)} ${r.m?.unit||''}</td><td style="color:${Math.abs(r.variance)<0.01?'var(--green)':r.variance>0?'var(--red)':'var(--amber)'};font-weight:600">${r.variance>0?'+':''}${r.variance.toFixed(3)}</td><td style="color:${Math.abs(r.pct)<5?'var(--green)':r.pct>0?'var(--red)':'var(--amber)'};font-weight:600">${r.pct>0?'+':''}${r.pct.toFixed(1)}%</td><td>${fmt(Math.abs(r.cost))}</td></tr>`).join('')}
+      </tbody></table></div>
+      <div class="ib" style="margin-top:12px">انحراف مثبت = مصرف بیشتر از استاندارد (ضایعات، پرت، سرقت یا عدم رعایت رسپی)</div>`:'<div class="empty">داده‌ای برای این دوره نیست — اول فروش و انبارگردانی ثبت کنید</div>';
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ SALES REPORT ═══
+async function loadSalesReport(){
+  const from=document.getElementById('rs-from').value;const to=document.getElementById('rs-to').value;
+  try{
+    let f={};if(from)f['date']='gte.'+from;
+    const sales=await db('GET','sales_invoices',{ord:'date.desc'});
+    const filtered=sales.filter(s=>(!from||s.date>=from)&&(!to||s.date<=to));
+    const byProd={};let total=0;
+    for(const s of filtered){const sl=await db('GET','sales_lines',{filter:{'invoice_id':'eq.'+s.id}});sl.forEach(l=>{const p=PRODS.find(x=>x.id===l.product_id);const g=PG.find(x=>x.id===p?.group_id);const key=l.product_id;if(!byProd[key])byProd[key]={name:p?.name_fa||'—',group:g?.name_fa||'—',qty:0,total:0};byProd[key].qty+=+l.qty;byProd[key].total+=+l.line_total;total+=+l.line_total})}
+    const rows=Object.values(byProd).sort((a,b)=>b.total-a.total);
+    window._salesExport=rows;
+    document.getElementById('sales-result').innerHTML=rows.length?`
+      <div class="tb" style="margin-bottom:12px"><div class="tr2 fin"><span>جمع کل فروش</span><span style="color:var(--green)">${fmt(total)}</span></div></div>
+      <div class="ch"><span class="ct">جزئیات</span><button class="btn bs" onclick="exportExcel('گزارش_فروش',['محصول','گروه','تعداد','مبلغ'],window._salesExport.map(r=>[r.name,r.group,r.qty,r.total]))"><i class="ti ti-file-spreadsheet"></i>خروجی اکسل</button></div>
+      <div class="tbl"><table><thead><tr><th>محصول</th><th>گروه</th><th>تعداد فروش</th><th>مبلغ</th><th>سهم</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr><td><b>${r.name}</b></td><td><span class="chip cs">${r.group}</span></td><td>${r.qty}</td><td style="font-weight:600">${fmt(r.total)}</td><td>${(r.total/total*100).toFixed(1)}%</td></tr>`).join('')}
+      </tbody></table></div>`:'<div class="empty">فروشی در این بازه نیست</div>';
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ P&L ═══
+async function loadPL(){
+  try{
+    const lines=await db('GET','voucher_lines',{sel:'coa_code,debit,credit'});
+    const acc={};
+    lines.forEach(l=>{const a=COA.find(x=>x.code===l.coa_code);if(!a)return;if(!acc[l.coa_code])acc[l.coa_code]={a,val:0};acc[l.coa_code].val+=a.normal_balance==='debit'?(+l.debit-+l.credit):(+l.credit-+l.debit)});
+    let rev=0,exp=0;const revRows=[],expRows=[];
+    Object.values(acc).forEach(x=>{if(x.a.account_type==='revenue'&&x.val!==0){rev+=x.val;revRows.push(x)}if(x.a.account_type==='expense'&&x.val!==0){exp+=x.val;expRows.push(x)}});
+    const profit=rev-exp;
+    document.getElementById('pl-result').innerHTML=`
+      <div class="tb">
+        <div class="tr2" style="font-size:14px;font-weight:700"><span>💰 درآمدها</span><span style="color:var(--green)">${fmt(rev)}</span></div>
+        ${revRows.map(x=>`<div class="tr2" style="padding-right:16px"><span>${x.a.name_fa}</span><span>${fmt(x.val)}</span></div>`).join('')}
+        <div class="tr2" style="font-size:14px;font-weight:700;margin-top:10px"><span>💸 هزینه‌ها</span><span style="color:var(--red)">${fmt(exp)}</span></div>
+        ${expRows.map(x=>`<div class="tr2" style="padding-right:16px"><span>${x.a.name_fa}</span><span style="color:var(--red)">${fmt(x.val)}</span></div>`).join('')}
+        <div class="tr2 fin"><span>${profit>=0?'✓ سود خالص':'✗ زیان خالص'}</span><span style="color:${profit>=0?'var(--green)':'var(--red)'};font-size:18px">${fmt(Math.abs(profit))}</span></div>
+      </div>`;
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ USERS ═══
+async function loadUsers(){
+  try{USERS=await db('GET','app_users',{ord:'username.asc'});
+  document.getElementById('users-tb').innerHTML=USERS.length?USERS.map(u=>{
+    const perms=u.permissions||{};const pc=u.role==='manager'||perms.all?'همه':PERMS.filter(p=>perms[p.k]).length+' بخش';
+    return`<tr><td><b>${u.username}</b></td><td>${u.full_name||'—'}</td><td>${chip(u.role,u.role==='manager'?'مدیر':'کارمند')}</td><td>${pc}</td><td>${chip(u.is_active?'active':'inactive',u.is_active?'فعال':'غیرفعال')}</td><td><button class="btn" onclick="editUser('${u.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button></td></tr>`}).join(''):'<tr><td colspan="6" class="empty">کاربری نیست</td></tr>'}catch(e){toast('خطا کاربران','err')}
+}
+let editUserId=null;
+function openUserModal(){
+  editUserId=null;document.getElementById('um-title').textContent='کاربر جدید';
+  ['um-user','um-pass','um-name'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('um-role').value='employee';
+  renderPermsGrid({});toggleRolePerms();
+  om('user-modal');
+}
+function editUser(id){
+  const u=USERS.find(x=>x.id===id);if(!u)return;editUserId=id;
+  document.getElementById('um-title').textContent='ویرایش: '+u.username;
+  document.getElementById('um-user').value=u.username;document.getElementById('um-pass').value=u.password;
+  document.getElementById('um-name').value=u.full_name||'';document.getElementById('um-role').value=u.role;
+  renderPermsGrid(u.permissions||{});toggleRolePerms();
+  om('user-modal');
+}
+function renderPermsGrid(perms){
+  document.getElementById('um-perms').innerHTML=PERMS.map(p=>`<label class="perm-item ${perms[p.k]?'checked':''}"><input type="checkbox" data-perm="${p.k}" ${perms[p.k]?'checked':''} onchange="this.closest('.perm-item').classList.toggle('checked',this.checked)">${p.n}</label>`).join('');
+}
+function toggleRolePerms(){const isM=document.getElementById('um-role').value==='manager';document.getElementById('um-perms-section').style.opacity=isM?'.4':'1';document.getElementById('um-perms-section').style.pointerEvents=isM?'none':'auto'}
+async function saveUser(){
+  const username=document.getElementById('um-user').value.trim();
+  const password=document.getElementById('um-pass').value.trim();
+  if(!username||!password){toast('نام کاربری و رمز الزامی است','warn');return}
+  const role=document.getElementById('um-role').value;
+  const perms={};
+  if(role==='manager')perms.all=true;
+  else document.querySelectorAll('#um-perms input:checked').forEach(c=>{perms[c.dataset.perm]=true});
+  const body={username,password,full_name:document.getElementById('um-name').value||null,role,permissions:perms,is_active:true};
+  try{
+    if(editUserId){await dbPatch('app_users','id',editUserId,body);toast('✓ کاربر بروزرسانی شد')}
+    else{await db('POST','app_users',{b:body});toast('✓ کاربر '+username+' ساخته شد')}
+    cm('user-modal');loadUsers();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// ═══ BACKUP & RESTORE ═══
+const BACKUP_TABLES=['coa','material_groups','raw_materials','product_groups','products','recipe_cards','parties','employees','app_users','counters','app_settings','vouchers','voucher_lines','purchase_invoices','purchase_lines','sales_invoices','sales_lines','consumption_vouchers','consumption_lines','inventory_counts','inventory_count_lines','payroll_records','stock_movements','variance_records'];
+
+async function doBackup(){
+  const btn=document.getElementById('backup-btn');const st=document.getElementById('backup-status');
+  btn.disabled=true;const orig=btn.innerHTML;
+  try{
+    const backup={_meta:{date:new Date().toISOString(),version:'1.0',app:'hesabyar'},data:{}};
+    for(let i=0;i<BACKUP_TABLES.length;i++){
+      const t=BACKUP_TABLES[i];
+      st.textContent=`در حال خواندن ${t} (${i+1}/${BACKUP_TABLES.length})...`;
+      try{backup.data[t]=await db('GET',t,{lim:100000})}
+      catch(e){backup.data[t]=[]}
+    }
+    const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    const d=new Date();a.download=`hesabyar_backup_${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}.json`;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    const total=Object.values(backup.data).reduce((a,r)=>a+r.length,0);
+    st.textContent=`✓ بکاپ کامل شد — ${total} رکورد ذخیره شد`;
+    toast('✓ بکاپ دانلود شد — جای امن نگه دارید');
+  }catch(e){st.textContent='خطا: '+e.message;toast('خطا بکاپ: '+e.message,'err')}
+  finally{btn.disabled=false;btn.innerHTML=orig}
+}
+
+async function doRestore(input){
+  const file=input.files[0];if(!file)return;
+  const st=document.getElementById('restore-status');
+  if(!confirm('⚠️ هشدار مهم!\nبازیابی، داده‌های فعلی را با فایل بکاپ جایگزین می‌کند.\nاین کار قابل بازگشت نیست.\n\nادامه می‌دهید؟')){input.value='';return}
+  if(!confirm('برای اطمینان دوباره تأیید کنید:\nآیا واقعاً می‌خواهید بازیابی کنید؟')){input.value='';return}
+  try{
+    st.textContent='در حال خواندن فایل...';
+    const text=await file.text();
+    const backup=JSON.parse(text);
+    if(!backup.data||backup._meta?.app!=='hesabyar'){st.textContent='فایل بکاپ معتبر نیست';toast('فایل معتبر نیست','err');input.value='';return}
+    // ترتیب درج: اول جدول‌های پایه، بعد وابسته‌ها
+    const order=BACKUP_TABLES;
+    let restored=0;
+    for(let i=0;i<order.length;i++){
+      const t=order[i];const rows=backup.data[t];
+      if(!rows||!rows.length)continue;
+      st.textContent=`بازگردانی ${t} (${i+1}/${order.length})...`;
+      // پاک کردن جدول فعلی (با احتیاط، فقط اگه داده داره)
+      try{await fetch(`${SU}/rest/v1/${t}?id=neq.00000000-0000-0000-0000-000000000000`,{method:'DELETE',headers:{'apikey':SK,'Authorization':'Bearer '+SK}})}catch(e){}
+      // درج دسته‌ای (هر ۵۰۰ تا)
+      for(let j=0;j<rows.length;j+=500){
+        const chunk=rows.slice(j,j+500);
+        try{await db('POST',t,{b:chunk})}catch(e){}
+      }
+      restored+=rows.length;
+    }
+    st.textContent=`✓ بازیابی کامل شد — ${restored} رکورد`;
+    toast('✓ بازیابی انجام شد — صفحه را رفرش کنید');
+    setTimeout(()=>location.reload(),2000);
+  }catch(e){st.textContent='خطا: '+e.message;toast('خطا بازیابی: '+e.message,'err')}
+  input.value='';
+}
+
+async function backupExcel(table){
+  try{
+    const rows=await db('GET',table,{lim:100000});
+    if(!rows.length){toast('این جدول خالی است','warn');return}
+    const headers=Object.keys(rows[0]);
+    const data=rows.map(r=>headers.map(h=>{const v=r[h];return v==null?'':typeof v==='object'?JSON.stringify(v):v}));
+    exportExcel('بکاپ_'+table,headers,data);
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+
+// ═══════════ توابع تعریفات ═══════════
+
+// چک لاگین — اگه وارد نشده، برو به صفحه ورود
+
+
+
+
+let eID={mg:null,mat:null,pg:null,prod:null,party:null,emp:null};
+let selProd=null;
+
+
+
+
+
+
+async function nxt(type){
+  const rows=await dbQ('counters','type',type);if(!rows.length)return type.toUpperCase()+'-0001';
+  const row=rows[0],n=row.last_number+1;await dbU('counters','type',type,{last_number:n});
+  return`${row.prefix}-${row.year}-${String(n).padStart(4,'0')}`;
+}
+
+
+
+// ═══ کمک‌توابع import/export اکسل ═══
+
+
+
+
+
+
+
+
+
+// CONNECTION
+async function initAll(){
+  await Promise.all([loadCOA(false),loadMG(),loadMats(),loadPG(),loadProds(),loadParties('all'),loadEmps()]);
+  await loadRcp();
+}
+
+// ═══ MATERIAL GROUPS ═══
+async function loadMG(){
+  try{MG=await db('GET','material_groups',{ord:'sort_order.asc,code.asc'});renderMG()}
+  catch(e){toast('خطا گروه‌ها: '+e.message,'err')}
+}
+function renderMG(){
+  const tb=document.getElementById('mg-tb');if(!tb)return;
+  const cnt={};MATS.forEach(m=>{cnt[m.group_id]=(cnt[m.group_id]||0)+1});
+  tb.innerHTML=MG.length?MG.map(g=>`<tr>
+    <td class="mono" style="color:var(--blue)">${g.code}</td>
+    <td><b>${g.name_fa}</b>${g.name_tr?`<div style="font-size:10px;color:var(--tx3)">${g.name_tr}</div>`:''}</td>
+    <td><span class="cpill">${g.asset_coa_code||'—'}</span></td>
+    <td><span class="cpill">${g.expense_coa_code||'—'}</span></td>
+    <td><span class="chip c-i">${cnt[g.id]||0}</span></td>
+    <td>${chip(g.is_active?'active':'inactive',g.is_active?'فعال':'غیرفعال')}</td>
+    <td><div style="display:flex;gap:4px"><button class="btn" onclick="editMG('${g.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button><button class="btn brd" onclick="delMG('${g.id}')" style="padding:3px 8px"><i class="ti ti-trash"></i></button></div></td>
+  </tr>`).join(''):'<tr><td colspan="7" class="empty">هنوز گروهی تعریف نشده</td></tr>';
+}
+function openMGM(){
+  eID.mg=null;document.getElementById('mgm-t').textContent='گروه مواد اولیه جدید';
+  ['mg-code','mg-name','mg-tr'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('mg-sort').value='0';
+  const n=COA.filter(a=>a.parent_code==='1.2'&&a.is_group).length+1;
+  document.getElementById('mg-acoa').textContent=`1.2.${n}`;
+  document.getElementById('mg-ecoa').textContent=`5.1.${n}`;
+  om('mgm');
+}
+function editMG(id){
+  const g=MG.find(x=>x.id===id);if(!g)return;eID.mg=id;
+  document.getElementById('mgm-t').textContent='ویرایش: '+g.name_fa;
+  document.getElementById('mg-code').value=g.code;document.getElementById('mg-name').value=g.name_fa;
+  document.getElementById('mg-tr').value=g.name_tr||'';document.getElementById('mg-sort').value=g.sort_order||0;
+  document.getElementById('mg-acoa').textContent=g.asset_coa_code||'—';
+  document.getElementById('mg-ecoa').textContent=g.expense_coa_code||'—';
+  om('mgm');
+}
+async function saveMG(){
+  let code=document.getElementById('mg-code').value.trim();
+  const name=document.getElementById('mg-name').value.trim();
+  if(!name){toast('نام گروه الزامی','warn');return}
+  // کد خودکار اگه خالیه
+  if(!code){
+    const nums=MG.map(g=>{const m=(g.code||'').match(/MG-?(\d+)/i);return m?+m[1]:0});
+    const next=(nums.length?Math.max(...nums):0)+1;
+    code='MG-'+String(next).padStart(3,'0');
+  }
+  try{
+    if(eID.mg){
+      await dbU('material_groups','id',eID.mg,{code,name_fa:name,name_tr:document.getElementById('mg-tr').value||null,sort_order:+document.getElementById('mg-sort').value||0});
+      toast('✓ بروزرسانی شد');
+    }else{
+      const n=COA.filter(a=>a.parent_code==='1.2'&&a.is_group).length+1;
+      const ac=`1.2.${n}`,ec=`5.1.${n}`;
+      const tr=document.getElementById('mg-tr').value||name;
+      await db('POST','coa',{b:{code:ac,parent_code:'1.2',name_fa:`موجودی ${name}`,name_tr:`${tr} Stoğu`,account_type:'asset',normal_balance:'debit',is_group:true,level:3,is_system:false}});
+      await db('POST','coa',{b:{code:ec,parent_code:'5.1',name_fa:`هزینه ${name}`,name_tr:`${tr} Gideri`,account_type:'expense',normal_balance:'debit',is_group:false,level:3,is_system:false}});
+      await db('POST','material_groups',{b:{code,name_fa:name,name_tr:document.getElementById('mg-tr').value||null,sort_order:+document.getElementById('mg-sort').value||0,asset_coa_code:ac,expense_coa_code:ec,is_active:true}});
+      toast(`✓ گروه "${name}" + COA ${ac} و ${ec}`);
+    }
+    cm('mgm');await loadMG();await loadCOA(false);
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+
+// حذف گروه مواد اولیه — فقط اگه خالی باشه
+async function delMG(id){
+  const g=MG.find(x=>x.id===id);if(!g)return;
+  const count=MATS.filter(m=>m.group_id===id).length;
+  if(count>0){toast(`نمیشه حذف کرد — ${count} ماده اولیه در این گروه هست. اول آنها را حذف کنید.`,'warn');return}
+  if(!confirm(`حذف گروه «${g.name_fa}»؟`))return;
+  try{
+    await dbDel('material_groups','id',id);
+    if(g.asset_coa_code)await dbDel('coa','code',g.asset_coa_code).catch(()=>{});
+    if(g.expense_coa_code)await dbDel('coa','code',g.expense_coa_code).catch(()=>{});
+    toast('✓ گروه حذف شد');await loadMG();await loadCOA(false);
+  }catch(e){toast('خطا حذف: '+e.message,'err')}
+}
+
+// ═══ MATERIALS ═══
+async function loadMats(){
+  try{MATS=await db('GET','raw_materials',{ord:'code.asc'});renderMats(MATS);popMGSel();prevMatCOA()}
+  catch(e){toast('خطا مواد: '+e.message,'err')}
+}
+function renderMats(list){
+  const tb=document.getElementById('mat-tb');if(!tb)return;
+  tb.innerHTML=list.length?list.map(m=>{
+    const g=MG.find(x=>x.id===m.group_id);
+    const st=+m.current_stock<=0?'c-d':+m.current_stock<=(+m.min_stock||0)?'c-w':'c-s';
+    return`<tr>
+      <td class="mono" style="color:var(--blue)">${m.code}</td>
+      <td><b>${m.name_fa}</b>${m.name_tr?`<div style="font-size:10px;color:var(--tx3)">${m.name_tr}</div>`:''}</td>
+      <td>${g?`<span class="chip c-t">${g.name_fa}</span>`:'—'}</td>
+      <td>${m.unit}</td>
+      <td><span class="chip ${st}">${(+m.current_stock).toFixed(3)} ${m.unit}</span></td>
+      <td style="color:var(--amber)">₺${(+m.avg_cost).toFixed(4)}</td>
+      <td><span class="cpill">${m.coa_code||'—'}</span></td>
+      <td>${chip(m.is_active?'active':'inactive',m.is_active?'فعال':'غیرفعال')}</td>
+      <td><div style="display:flex;gap:4px"><button class="btn" onclick="editMat('${m.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button><button class="btn brd" onclick="delMat('${m.id}')" style="padding:3px 8px"><i class="ti ti-trash"></i></button></div></td>
+    </tr>`;
+  }).join(''):'<tr><td colspan="9" class="empty">هنوز ماده اولیه‌ای تعریف نشده</td></tr>';
+}
+function filterMats(){const q=document.getElementById('mat-q').value.toLowerCase();renderMats(MATS.filter(m=>m.name_fa.toLowerCase().includes(q)||m.code.toLowerCase().includes(q)))}
+function popMGSel(){
+  const sel=document.getElementById('m-grp');if(!sel)return;
+  sel.innerHTML='<option value="">— انتخاب گروه —</option>';
+  MG.forEach(g=>{const o=document.createElement('option');o.value=g.id;o.textContent=g.name_fa;sel.appendChild(o)});
+}
+function prevMatCOA(){
+  const gid=document.getElementById('m-grp')?.value;
+  const g=MG.find(x=>x.id===gid);
+  if(g){const c=MATS.filter(m=>m.group_id===gid).length+1;document.getElementById('m-coa-prev').textContent=`${g.asset_coa_code}.${String(c).padStart(3,'0')}`}
+  else document.getElementById('m-coa-prev').textContent='—';
+}
+function openMatM(){
+  eID.mat=null;document.getElementById('matm-t').textContent='ماده اولیه جدید';
+  ['m-code','m-name','m-tr','m-bar'].forEach(id=>document.getElementById(id).value='');
+  ['m-stock','m-min','m-reorder','m-price'].forEach(id=>document.getElementById(id).value='0');
+  document.getElementById('m-coa-prev').textContent='—';
+  om('matm');
+}
+function editMat(id){
+  const m=MATS.find(x=>x.id===id);if(!m)return;eID.mat=id;
+  document.getElementById('matm-t').textContent='ویرایش: '+m.name_fa;
+  document.getElementById('m-code').value=m.code;document.getElementById('m-name').value=m.name_fa;
+  document.getElementById('m-tr').value=m.name_tr||'';document.getElementById('m-bar').value=m.barcode||'';
+  document.getElementById('m-grp').value=m.group_id||'';document.getElementById('m-unit').value=m.unit;
+  document.getElementById('m-stock').value=m.current_stock;document.getElementById('m-min').value=m.min_stock;
+  document.getElementById('m-reorder').value=m.reorder_point;document.getElementById('m-price').value=m.avg_cost;
+  document.getElementById('m-coa-prev').textContent=m.coa_code||'—';
+  om('matm');
+}
+async function saveMat(){
+  const code=document.getElementById('m-code').value.trim(),name=document.getElementById('m-name').value.trim(),gid=document.getElementById('m-grp').value;
+  if(!code||!name||!gid){toast('کد، نام و گروه الزامی','warn');return}
+  const g=MG.find(x=>x.id===gid);
+  let coa=document.getElementById('m-coa-prev').textContent;
+  if(coa==='—'&&g){const c=MATS.filter(m=>m.group_id===gid).length+1;coa=`${g.asset_coa_code}.${String(c).padStart(3,'0')}`}
+  const b={code,name_fa:name,name_tr:document.getElementById('m-tr').value||null,group_id:gid,coa_code:coa,unit:document.getElementById('m-unit').value,min_stock:+document.getElementById('m-min').value||0,reorder_point:+document.getElementById('m-reorder').value||0,current_stock:+document.getElementById('m-stock').value||0,avg_cost:+document.getElementById('m-price').value||0,last_purchase_price:+document.getElementById('m-price').value||0,barcode:document.getElementById('m-bar').value||null,is_active:true};
+  try{
+    if(eID.mat){await dbU('raw_materials','id',eID.mat,b);toast('✓ بروزرسانی شد')}
+    else{
+      if(g&&coa&&coa!=='—')await db('POST','coa',{b:{code:coa,parent_code:g.asset_coa_code,name_fa:name,name_tr:document.getElementById('m-tr').value||name,account_type:'asset',normal_balance:'debit',is_group:false,level:4,is_system:false}}).catch(()=>{});
+      await db('POST','raw_materials',{b});toast(`✓ ${name} (${code}) | COA: ${coa}`);
+    }
+    cm('matm');await loadMats();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+// ═══ IMPORT/EXPORT مواد اولیه ═══
+async function importMats(){
+  if(!MG.length){toast('اول حداقل یک گروه مواد اولیه بسازید','warn');return}
+  const text=await readClipboard();if(!text.trim()){toast('چیزی برای ورود نیست','warn');return}
+  const rows=parsePaste(text);let ok=0,fail=0;
+  for(const r of rows){
+    const name=(r[0]||'').trim();if(!name)continue;
+    if(MATS.find(m=>m.name_fa.trim()===name)){fail++;continue} // تکراری
+    // پیدا کردن گروه با نام (ستون ۲)، اگه نبود گروه اول
+    let g=MG.find(x=>x.name_fa.trim()===(r[1]||'').trim())||MG[0];
+    const unit=(r[2]||'adet').trim()||'adet';
+    const price=parseFloat(r[3])||0;
+    const cnt=MATS.filter(m=>m.group_id===g.id).length+1;
+    const coa=`${g.asset_coa_code}.${String(cnt).padStart(3,'0')}`;
+    const code='RM-'+String(MATS.length+1+ok).padStart(4,'0');
+    try{
+      await db('POST','coa',{b:{code:coa,parent_code:g.asset_coa_code,name_fa:name,account_type:'asset',normal_balance:'debit',is_group:false,level:4,is_system:false}}).catch(()=>{});
+      const [nm]=await db('POST','raw_materials',{b:{code,name_fa:name,group_id:g.id,coa_code:coa,unit,current_stock:0,avg_cost:price,last_purchase_price:price,is_active:true}});
+      MATS.push(nm);ok++;
+    }catch(e){fail++}
+  }
+  await loadMats();
+  toast(`✓ ${ok} ماده اولیه اضافه شد${fail?` | ${fail} رد شد (تکراری/خطا)`:''}`);
+}
+function exportMats(){
+  exportExcel('مواد_اولیه',['کد','نام فارسی','گروه','واحد','موجودی','قیمت میانگین','COA'],
+    MATS.map(m=>{const g=MG.find(x=>x.id===m.group_id);return[m.code,m.name_fa,g?.name_fa||'',m.unit,m.current_stock,m.avg_cost,m.coa_code]}));
+}
+function tmplMats(){downloadTemplate('فرمت_مواد_اولیه',['نام فارسی','گروه','واحد','قیمت خرید'],[['آب معدنی','نوشیدنی‌ها','adet','5'],['شکر','خشکبار','kg','30']])}
+async function delMat(id){
+  const m=MATS.find(x=>x.id===id);if(!m)return;
+  const usedInRecipes=RCP.filter(r=>r.raw_material_id===id).length;
+  const warn=usedInRecipes>0?`\n⚠️ این ماده در ${usedInRecipes} رسپی استفاده شده — آنها هم حذف می‌شوند.`:'';
+  if(!confirm(`حذف ماده اولیه «${m.name_fa}»؟${warn}\nاین کار قابل بازگشت نیست.`))return;
+  try{
+    // اول رسپی‌های مرتبط رو پاک کن
+    if(usedInRecipes>0){
+      for(const r of RCP.filter(r=>r.raw_material_id===id)){await dbDel('recipe_cards','id',r.id).catch(()=>{})}
+    }
+    await dbDel('raw_materials','id',id);
+    if(m.coa_code)await dbDel('coa','code',m.coa_code).catch(()=>{});
+    toast('✓ حذف شد');
+    RCP=await db('GET','recipe_cards').catch(()=>RCP);
+    await loadMats();await loadCOA(false);
+  }catch(e){toast('خطا حذف: '+e.message+' (احتمالاً در فاکتور خرید استفاده شده)','err')}
+}
+async function loadPG(){
+  try{PG=await db('GET','product_groups',{ord:'sort_order.asc,code.asc'});renderPG()}
+  catch(e){toast('خطا گروه محصولات','err')}
+}
+function renderPG(){
+  const tb=document.getElementById('pg-tb');if(!tb)return;
+  const cnt={};PRODS.forEach(p=>{cnt[p.group_id]=(cnt[p.group_id]||0)+1});
+  tb.innerHTML=PG.length?PG.map(g=>`<tr>
+    <td class="mono" style="color:var(--green)">${g.code}</td>
+    <td><b>${g.name_fa}</b>${g.name_tr?`<div style="font-size:10px;color:var(--tx3)">${g.name_tr}</div>`:''}</td>
+    <td><span class="cpill">${g.revenue_coa_code||'—'}</span></td>
+    <td><span class="chip c-i">${cnt[g.id]||0}</span></td>
+    <td>${chip(g.is_active?'active':'inactive',g.is_active?'فعال':'غیرفعال')}</td>
+    <td><div style="display:flex;gap:4px"><button class="btn" onclick="editPG('${g.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button><button class="btn brd" onclick="delPG('${g.id}')" style="padding:3px 8px"><i class="ti ti-trash"></i></button></div></td>
+  </tr>`).join(''):'<tr><td colspan="6" class="empty">هنوز گروه محصولی تعریف نشده</td></tr>';
+}
+function openPGM(){
+  eID.pg=null;document.getElementById('pgm-t').textContent='گروه محصولات جدید';
+  ['pg-code','pg-name','pg-tr'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pg-sort').value='0';
+  const n=COA.filter(a=>a.parent_code==='4.1'&&a.is_group).length+1;
+  document.getElementById('pg-rcoa').textContent=`4.1.${n}`;
+  om('pgm');
+}
+function editPG(id){
+  const g=PG.find(x=>x.id===id);if(!g)return;eID.pg=id;
+  document.getElementById('pgm-t').textContent='ویرایش: '+g.name_fa;
+  document.getElementById('pg-code').value=g.code;document.getElementById('pg-name').value=g.name_fa;
+  document.getElementById('pg-tr').value=g.name_tr||'';document.getElementById('pg-sort').value=g.sort_order||0;
+  document.getElementById('pg-rcoa').textContent=g.revenue_coa_code||'—';
+  om('pgm');
+}
+async function savePG(){
+  let code=document.getElementById('pg-code').value.trim();const name=document.getElementById('pg-name').value.trim();
+  if(!name){toast('نام گروه الزامی','warn');return}
+  if(!code){
+    const nums=PG.map(g=>{const m=(g.code||'').match(/PG-?(\d+)/i);return m?+m[1]:0});
+    const next=(nums.length?Math.max(...nums):0)+1;
+    code='PG-'+String(next).padStart(3,'0');
+  }
+  try{
+    if(eID.pg){await dbU('product_groups','id',eID.pg,{code,name_fa:name,name_tr:document.getElementById('pg-tr').value||null,sort_order:+document.getElementById('pg-sort').value||0});toast('✓ بروزرسانی شد')}
+    else{
+      const n=COA.filter(a=>a.parent_code==='4.1'&&a.is_group).length+1;
+      const rc=`4.1.${n}`;const tr=document.getElementById('pg-tr').value||name;
+      await db('POST','coa',{b:{code:rc,parent_code:'4.1',name_fa:`درآمد ${name}`,name_tr:`${tr} Geliri`,account_type:'revenue',normal_balance:'credit',is_group:true,level:3,is_system:false}});
+      await db('POST','product_groups',{b:{code,name_fa:name,name_tr:document.getElementById('pg-tr').value||null,sort_order:+document.getElementById('pg-sort').value||0,revenue_coa_code:rc,is_active:true}});
+      toast(`✓ گروه "${name}" + COA درآمد ${rc}`);
+    }
+    cm('pgm');await loadPG();await loadCOA(false);
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+// حذف گروه محصول — فقط اگه خالی باشه
+async function delPG(id){
+  const g=PG.find(x=>x.id===id);if(!g)return;
+  const count=PRODS.filter(p=>p.group_id===id).length;
+  if(count>0){toast(`نمیشه حذف کرد — ${count} محصول در این گروه هست.`,'warn');return}
+  if(!confirm(`حذف گروه «${g.name_fa}»؟`))return;
+  try{
+    await dbDel('product_groups','id',id);
+    if(g.revenue_coa_code)await dbDel('coa','code',g.revenue_coa_code).catch(()=>{});
+    toast('✓ گروه حذف شد');await loadPG();await loadCOA(false);
+  }catch(e){toast('خطا حذف: '+e.message,'err')}
+}
+
+// ═══ PRODUCTS ═══
+async function loadProds(){
+  try{PRODS=await db('GET','products',{ord:'code.asc'});renderProds(PRODS);popPGSel()}
+  catch(e){toast('خطا محصولات','err')}
+}
+function renderProds(list){
+  const tb=document.getElementById('prod-tb');if(!tb)return;
+  const rcnt={};RCP.forEach(r=>{rcnt[r.product_id]=(rcnt[r.product_id]||0)+1});
+  tb.innerHTML=list.length?list.map(p=>{
+    const g=PG.find(x=>x.id===p.group_id);
+    return`<tr>
+      <td class="mono" style="color:var(--green)">${p.code}</td>
+      <td><b>${p.name_fa}</b>${p.name_tr?`<div style="font-size:10px;color:var(--tx3)">${p.name_tr}</div>`:''}</td>
+      <td>${g?`<span class="chip c-s">${g.name_fa}</span>`:'—'}</td>
+      <td style="color:var(--green);font-weight:600">₺${(+p.sell_price).toLocaleString()}</td>
+      <td><span class="cpill">${p.coa_code||'—'}</span></td>
+      <td>${rcnt[p.id]?`<span class="chip c-i">${rcnt[p.id]} ماده</span>`:'<span class="chip c-w">بدون رسپی</span>'}</td>
+      <td>${chip(p.is_active?'active':'inactive',p.is_active?'فعال':'غیرفعال')}</td>
+      <td><div style="display:flex;gap:4px"><button class="btn" onclick="editProd('${p.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button><button class="btn brd" onclick="delProd('${p.id}')" style="padding:3px 8px"><i class="ti ti-trash"></i></button></div></td>
+    </tr>`;
+  }).join(''):'<tr><td colspan="8" class="empty">هنوز محصولی تعریف نشده</td></tr>';
+}
+function filterProds(){const q=document.getElementById('prod-q').value.toLowerCase();renderProds(PRODS.filter(p=>p.name_fa.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)))}
+function popPGSel(){
+  const sel=document.getElementById('pr-grp');if(!sel)return;
+  sel.innerHTML='<option value="">— انتخاب گروه —</option>';
+  PG.forEach(g=>{const o=document.createElement('option');o.value=g.id;o.textContent=g.name_fa;sel.appendChild(o)});
+}
+function prevProdCOA(){
+  const gid=document.getElementById('pr-grp')?.value;const g=PG.find(x=>x.id===gid);
+  if(g){const c=PRODS.filter(p=>p.group_id===gid).length+1;document.getElementById('pr-coa-prev').textContent=`${g.revenue_coa_code}.${String(c).padStart(3,'0')}`}
+  else document.getElementById('pr-coa-prev').textContent='—';
+}
+function openProdM(){
+  eID.prod=null;document.getElementById('prodm-t').textContent='محصول جدید';
+  ['pr-code','pr-name','pr-tr'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('pr-price').value='0';document.getElementById('pr-coa-prev').textContent='—';
+  om('prodm');
+}
+function editProd(id){
+  const p=PRODS.find(x=>x.id===id);if(!p)return;eID.prod=id;
+  document.getElementById('prodm-t').textContent='ویرایش: '+p.name_fa;
+  document.getElementById('pr-code').value=p.code;document.getElementById('pr-name').value=p.name_fa;
+  document.getElementById('pr-tr').value=p.name_tr||'';document.getElementById('pr-grp').value=p.group_id||'';
+  document.getElementById('pr-price').value=p.sell_price;document.getElementById('pr-unit').value=p.unit||'adet';
+  document.getElementById('pr-coa-prev').textContent=p.coa_code||'—';
+  om('prodm');
+}
+async function saveProd(){
+  const code=document.getElementById('pr-code').value.trim(),name=document.getElementById('pr-name').value.trim(),gid=document.getElementById('pr-grp').value;
+  if(!code||!name||!gid){toast('کد، نام و گروه الزامی','warn');return}
+  const g=PG.find(x=>x.id===gid);
+  let coa=document.getElementById('pr-coa-prev').textContent;
+  if((!coa||coa==='—')&&g){const c=PRODS.filter(p=>p.group_id===gid).length+1;coa=`${g.revenue_coa_code}.${String(c).padStart(3,'0')}`}
+  const b={code,name_fa:name,name_tr:document.getElementById('pr-tr').value||null,group_id:gid,coa_code:coa,sell_price:+document.getElementById('pr-price').value||0,unit:document.getElementById('pr-unit').value,is_active:true};
+  try{
+    if(eID.prod){await dbU('products','id',eID.prod,b);toast('✓ بروزرسانی شد')}
+    else{
+      if(g&&coa&&coa!=='—')await db('POST','coa',{b:{code:coa,parent_code:g.revenue_coa_code,name_fa:`درآمد ${name}`,name_tr:`${document.getElementById('pr-tr').value||name} Geliri`,account_type:'revenue',normal_balance:'credit',is_group:false,level:4,is_system:false}}).catch(()=>{});
+      await db('POST','products',{b});toast(`✓ ${name} (${code}) | COA: ${coa}`);
+    }
+    cm('prodm');await loadProds();
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+// ═══ IMPORT/EXPORT محصولات ═══
+async function importProds(){
+  if(!PG.length){toast('اول حداقل یک گروه محصول بسازید','warn');return}
+  const text=await readClipboard();if(!text.trim()){toast('چیزی برای ورود نیست','warn');return}
+  const rows=parsePaste(text);let ok=0,fail=0;
+  for(const r of rows){
+    const name=(r[0]||'').trim();if(!name)continue;
+    if(PRODS.find(p=>p.name_fa.trim()===name)){fail++;continue}
+    let g=PG.find(x=>x.name_fa.trim()===(r[1]||'').trim())||PG[0];
+    const price=parseFloat(r[2])||0;
+    const cnt=PRODS.filter(p=>p.group_id===g.id).length+1;
+    const coa=`${g.revenue_coa_code}.${String(cnt).padStart(3,'0')}`;
+    const code='PR-'+String(PRODS.length+1+ok).padStart(4,'0');
+    try{
+      await db('POST','coa',{b:{code:coa,parent_code:g.revenue_coa_code,name_fa:`درآمد ${name}`,account_type:'revenue',normal_balance:'credit',is_group:false,level:4,is_system:false}}).catch(()=>{});
+      const [np]=await db('POST','products',{b:{code,name_fa:name,group_id:g.id,coa_code:coa,sell_price:price,unit:'adet',is_active:true}});
+      PRODS.push(np);ok++;
+    }catch(e){fail++}
+  }
+  await loadProds();
+  toast(`✓ ${ok} محصول اضافه شد${fail?` | ${fail} رد شد`:''}`);
+}
+function exportProds(){
+  exportExcel('محصولات',['کد','نام فارسی','گروه','قیمت فروش','COA درآمد'],
+    PRODS.map(p=>{const g=PG.find(x=>x.id===p.group_id);return[p.code,p.name_fa,g?.name_fa||'',p.sell_price,p.coa_code]}));
+}
+function tmplProds(){downloadTemplate('فرمت_محصولات',['نام فارسی','گروه','قیمت فروش'],[['لاته','نوشیدنی‌های گرم','80'],['آب پرتقال','نوشیدنی‌های سرد','60']])}
+async function delProd(id){
+  const p=PRODS.find(x=>x.id===id);if(!p)return;
+  const usedInRecipes=RCP.filter(r=>r.product_id===id).length;
+  const warn=usedInRecipes>0?`\n⚠️ این محصول ${usedInRecipes} ردیف رسپی دارد — آنها هم حذف می‌شوند.`:'';
+  if(!confirm(`حذف محصول «${p.name_fa}»؟${warn}`))return;
+  try{
+    if(usedInRecipes>0){
+      for(const r of RCP.filter(r=>r.product_id===id)){await dbDel('recipe_cards','id',r.id).catch(()=>{})}
+    }
+    await dbDel('products','id',id);
+    if(p.coa_code)await dbDel('coa','code',p.coa_code).catch(()=>{});
+    toast('✓ حذف شد');
+    RCP=await db('GET','recipe_cards').catch(()=>RCP);
+    await loadProds();await loadCOA(false);
+  }catch(e){toast('خطا حذف: '+e.message,'err')}
+}
+
+// ═══ RCP ═══
+async function loadRcp(){
+  try{RCP=await db('GET','recipe_cards',{sel:'*'});renderRcpProds()}
+  catch(e){toast('خطا رسپی','err')}
+}
+function renderRcpProds(){
+  const el=document.getElementById('rcp-prod-list');if(!el)return;
+  const q=(document.getElementById('rcp-q')?.value||'').toLowerCase();
+  const list=PRODS.filter(p=>!q||p.name_fa.toLowerCase().includes(q)||p.code.toLowerCase().includes(q));
+  el.innerHTML=list.length?list.map(p=>{
+    const rc=RCP.filter(r=>r.product_id===p.id);
+    return`<div onclick="selRcpProd('${p.id}')" style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:7px;cursor:pointer;margin-bottom:2px;background:${selProd===p.id?'var(--bl)':'transparent'}">
+      <div><div style="font-size:12px;font-weight:500;color:${selProd===p.id?'var(--blue)':'var(--tx)'}">${p.name_fa}</div><div style="font-size:10px;color:var(--tx3)">${p.code} | ₺${p.sell_price}</div></div>
+      ${rc.length?`<span class="chip c-i">${rc.length}</span>`:'<span class="chip c-w">—</span>'}
+    </div>`;
+  }).join(''):'<div class="empty">محصولی یافت نشد</div>';
+}
+function filterRcpProds(){renderRcpProds()}
+async function selRcpProd(id){
+  selProd=id;renderRcpProds();
+  const prod=PRODS.find(p=>p.id===id);
+  const rcLines=RCP.filter(r=>r.product_id===id);
+  const matOptions=MATS.map(m=>`<option value="${m.id}">${m.name_fa} (${m.unit})</option>`).join('');
+  document.getElementById('rcp-editor').innerHTML=`
+    <div class="ch"><span class="ct">رسپی: ${prod?.name_fa||'—'}</span><button class="btn" onclick="addRcpLine('${id}','${prod?.name_fa||''}')"><i class="ti ti-plus"></i>ماده جدید</button></div>
+    <div style="font-size:11px;color:var(--tx3);margin-bottom:10px">قیمت فروش: <b style="color:var(--green)">₺${prod?.sell_price||0}</b></div>
+    <div style="display:grid;grid-template-columns:2fr 1fr 70px 28px;gap:6px;font-size:10px;font-weight:700;color:var(--tx3);padding:3px 0 7px;border-bottom:1px solid var(--bd);margin-bottom:7px;text-transform:uppercase;letter-spacing:.4px">
+      <span>ماده اولیه</span><span>مقدار</span><span>واحد</span><span></span>
+    </div>
+    <div id="rcp-lines">
+      ${rcLines.map(r=>{const mat=MATS.find(m=>m.id===r.raw_material_id);return`
+        <div class="rl-line" style="grid-template-columns:2fr 1fr 70px 28px" data-dbid="${r.id}">
+          <select class="rl-i" style="width:100%" onchange="updateRcpUnit(this)">
+            ${MATS.map(m=>`<option value="${m.id}" ${m.id===r.raw_material_id?'selected':''}>${m.name_fa}</option>`).join('')}
+          </select>
+          <input class="rl-i" type="number" value="${r.qty_per_unit}" step="0.001" oninput="calcRcpCost()">
+          <input class="rl-i ro" value="${r.unit||mat?.unit||''}" readonly>
+          <button class="rb" onclick="delRcpLine(this,'${r.id}')"><i class="ti ti-x"></i></button>
+        </div>`}).join('')}
+    </div>
+    <div class="tb" id="rcp-cost"></div>
+    <div class="bg" style="margin-top:12px">
+      <button class="btn bp" onclick="saveRcp('${id}')"><i class="ti ti-check"></i>ذخیره رسپی</button>
+    </div>`;
+  calcRcpCost();
+}
+function addRcpLine(){
+  const c=document.getElementById('rcp-lines');if(!c)return;
+  const d=document.createElement('div');d.className='rl-line';d.style.gridTemplateColumns='2fr 1fr 70px 28px';
+  d.innerHTML=`<select class="rl-i" style="width:100%" onchange="updateRcpUnit(this)">${MATS.map(m=>`<option value="${m.id}">${m.name_fa} (${m.unit})</option>`).join('')}</select>
+  <input class="rl-i" type="number" value="0" step="0.001" oninput="calcRcpCost()">
+  <input class="rl-i ro" value="${MATS[0]?.unit||''}" readonly>
+  <button class="rb" onclick="this.parentElement.remove();calcRcpCost()"><i class="ti ti-x"></i></button>`;
+  c.appendChild(d);
+}
+function updateRcpUnit(sel){const m=MATS.find(x=>x.id===sel.value);const ui=sel.parentElement.querySelectorAll('input')[1];if(ui&&m)ui.value=m.unit}
+function delRcpLine(btn,dbId){
+  if(dbId&&dbId!=='undefined')fetch(`${SU}/rest/v1/recipe_cards?id=eq.${dbId}`,{method:'DELETE',headers:{'apikey':SK,'Authorization':'Bearer '+SK}}).catch(()=>{});
+  btn.parentElement.remove();calcRcpCost();
+}
+function calcRcpCost(){
+  const box=document.getElementById('rcp-cost');if(!box)return;
+  let tc=0;
+  document.querySelectorAll('#rcp-lines .rl-line').forEach(ln=>{
+    const sel=ln.querySelector('select');const qty=+ln.querySelectorAll('input')[0]?.value||0;
+    const m=MATS.find(x=>x.id===sel?.value);if(m)tc+=qty*(+m.avg_cost);
+  });
+  const prod=PRODS.find(p=>p.id===selProd);
+  const margin=prod?.sell_price>0?(prod.sell_price-tc)/prod.sell_price*100:0;
+  box.innerHTML=`<div class="tr2"><span>هزینه مواد اولیه هر واحد:</span><span style="color:var(--amber);font-weight:700">₺${tc.toFixed(2)}</span></div>
+  <div class="tr2"><span>قیمت فروش:</span><span>₺${prod?.sell_price||0}</span></div>
+  <div class="tr2 fin"><span>حاشیه ناخالص رسپی:</span><span style="color:${margin>40?'var(--green)':margin>20?'var(--amber)':'var(--red)'}">${margin.toFixed(1)}%</span></div>`;
+}
+async function saveRcp(prodId){
+  const lines=[];
+  document.querySelectorAll('#rcp-lines .rl-line').forEach(ln=>{
+    const sel=ln.querySelector('select');const qty=+ln.querySelectorAll('input')[0]?.value||0;
+    const unit=ln.querySelectorAll('input')[1]?.value||'';const dbId=ln.dataset.dbid;
+    if(sel?.value&&qty>0)lines.push({dbId,mat:sel.value,qty,unit});
+  });
+  try{
+    const toIns=lines.filter(l=>!l.dbId||l.dbId==='undefined').map(l=>({product_id:prodId,raw_material_id:l.mat,qty_per_unit:l.qty,unit:l.unit}));
+    const toUpd=lines.filter(l=>l.dbId&&l.dbId!=='undefined');
+    if(toIns.length)await db('POST','recipe_cards',{b:toIns});
+    await Promise.all(toUpd.map(l=>dbU('recipe_cards','id',l.dbId,{qty_per_unit:l.qty,unit:l.unit})));
+    toast('✓ رسپی ذخیره شد');
+    RCP=await db('GET','recipe_cards');renderRcpProds();renderProds(PRODS);
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+// ═══ IMPORT/EXPORT رسپی ═══
+async function importRcp(){
+  const text=await readClipboard();if(!text.trim()){toast('چیزی برای ورود نیست','warn');return}
+  const rows=parsePaste(text);let ok=0,fail=0;
+  const toIns=[];
+  for(const r of rows){
+    const prodName=(r[0]||'').trim();const matName=(r[1]||'').trim();const qty=parseFloat(r[2])||0;
+    if(!prodName||!matName||qty<=0){fail++;continue}
+    const prod=PRODS.find(p=>p.name_fa.trim()===prodName);
+    const mat=MATS.find(m=>m.name_fa.trim()===matName);
+    if(!prod||!mat){fail++;continue} // محصول یا ماده پیدا نشد
+    // تکراری؟
+    if(RCP.find(rc=>rc.product_id===prod.id&&rc.raw_material_id===mat.id)){fail++;continue}
+    toIns.push({product_id:prod.id,raw_material_id:mat.id,qty_per_unit:qty,unit:mat.unit});ok++;
+  }
+  try{
+    if(toIns.length)await db('POST','recipe_cards',{b:toIns});
+    RCP=await db('GET','recipe_cards');renderRcpProds();renderProds(PRODS);
+    toast(`✓ ${ok} ردیف رسپی اضافه شد${fail?` | ${fail} رد شد (محصول/ماده نبود یا تکراری)`:''}`);
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+function exportRcp(){
+  const rows=RCP.map(rc=>{const p=PRODS.find(x=>x.id===rc.product_id);const m=MATS.find(x=>x.id===rc.raw_material_id);return[p?.name_fa||'',m?.name_fa||'',rc.qty_per_unit,rc.unit||'']});
+  exportExcel('رسپی_کارد',['محصول','ماده اولیه','مقدار','واحد'],rows);
+}
+function tmplRcp(){downloadTemplate('فرمت_رسپی',['نام محصول','نام ماده اولیه','مقدار'],[['لاته','شیر','0.2'],['لاته','قهوه','0.018']])}
+
+// ═══ PARTIES ═══
+async function loadParties(type){
+  try{
+    PARTIES=await db('GET','parties',{ord:'code.asc'});
+    if(type==='all'){renderParties('supplier');renderParties('customer')}
+    else renderParties(type);
+  }catch(e){toast('خطا طرف حساب','err')}
+}
+function renderParties(type){
+  if(type==='supplier'){
+    const tb=document.getElementById('supp-tb');if(!tb)return;
+    const list=PARTIES.filter(p=>p.party_type==='supplier'||p.party_type==='both');
+    const q=(document.getElementById('supp-q')?.value||'').toLowerCase();
+    const fl=q?list.filter(p=>p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)):list;
+    tb.innerHTML=fl.length?fl.map(p=>`<tr><td class="mono" style="color:var(--purple)">${p.code}</td><td><b>${p.name}</b>${p.phone?`<div style="font-size:10px;color:var(--tx3)">${p.phone}</div>`:''}</td><td>${p.phone||'—'}</td><td class="mono">${p.tax_number||'—'}</td><td>${p.currency||'TRY'}</td><td><span class="cpill">${p.coa_code||'—'}</span></td><td>${chip(p.is_active?'active':'inactive',p.is_active?'فعال':'غیرفعال')}</td><td><div style="display:flex;gap:4px"><button class="btn" onclick="editParty('${p.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button><button class="btn brd" onclick="delParty('${p.id}')" style="padding:3px 8px"><i class="ti ti-trash"></i></button></div></td></tr>`).join(''):'<tr><td colspan="8" class="empty">هنوز تامین‌کننده‌ای ثبت نشده</td></tr>';
+  }else{
+    const tb=document.getElementById('cust-tb');if(!tb)return;
+    const list=PARTIES.filter(p=>p.party_type==='customer'||p.party_type==='both');
+    const q=(document.getElementById('cust-q')?.value||'').toLowerCase();
+    const fl=q?list.filter(p=>p.name.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)):list;
+    tb.innerHTML=fl.length?fl.map(p=>`<tr><td class="mono" style="color:var(--green)">${p.code}</td><td><b>${p.name}</b></td><td>${p.phone||'—'}</td><td><span class="cpill">${p.coa_code||'—'}</span></td><td>${chip(p.is_active?'active':'inactive',p.is_active?'فعال':'غیرفعال')}</td><td><div style="display:flex;gap:4px"><button class="btn" onclick="editParty('${p.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button><button class="btn brd" onclick="delParty('${p.id}')" style="padding:3px 8px"><i class="ti ti-trash"></i></button></div></td></tr>`).join(''):'<tr><td colspan="6" class="empty">هنوز مشتری‌ای ثبت نشده</td></tr>';
+  }
+}
+function filterParties(type){renderParties(type)}
+async function openPartyM(type='supplier'){
+  eID.party=null;['p-name','p-tax','p-phone','p-addr'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('p-type').value=type;
+  const no=await nxt(type==='supplier'?'supplier':'customer');
+  document.getElementById('p-code').value=no;
+  document.getElementById('partym-t').textContent=type==='supplier'?'تامین‌کننده جدید':'مشتری جدید';
+  updatePartyCOA();om('partym');
+}
+function updatePartyCOA(){
+  const t=document.getElementById('p-type').value;
+  document.getElementById('p-coa').textContent=t==='supplier'?'2.1.1':'1.1.3';
+  document.getElementById('p-mh').textContent=t==='supplier'?'بستانکار (بدهی)':'بدهکار (دریافتنی)';
+  document.getElementById('p-mh').style.color=t==='supplier'?'var(--red)':'var(--blue)';
+}
+function editParty(id){
+  const p=PARTIES.find(x=>x.id===id);if(!p)return;eID.party=id;
+  document.getElementById('partym-t').textContent='ویرایش: '+p.name;
+  document.getElementById('p-code').value=p.code;document.getElementById('p-name').value=p.name;
+  document.getElementById('p-type').value=p.party_type;document.getElementById('p-tax').value=p.tax_number||'';
+  document.getElementById('p-phone').value=p.phone||'';document.getElementById('p-addr').value=p.address||'';
+  document.getElementById('p-cur').value=p.currency||'TRY';
+  updatePartyCOA();om('partym');
+}
+async function saveParty(){
+  const name=document.getElementById('p-name').value.trim();if(!name){toast('نام الزامی','warn');return}
+  const t=document.getElementById('p-type').value;
+  const b={code:document.getElementById('p-code').value,name,party_type:t,tax_number:document.getElementById('p-tax').value||null,phone:document.getElementById('p-phone').value||null,address:document.getElementById('p-addr').value||null,currency:document.getElementById('p-cur').value,coa_code:t==='supplier'?'2.1.1':'1.1.3',is_active:true};
+  try{
+    if(eID.party){await dbU('parties','id',eID.party,b);toast('✓ بروزرسانی شد')}
+    else{await db('POST','parties',{b});toast('✓ '+name+' ثبت شد')}
+    cm('partym');await loadParties('all');
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+async function delParty(id){
+  const p=PARTIES.find(x=>x.id===id);if(!p)return;
+  if(!confirm(`حذف «${p.name}»؟`))return;
+  try{await dbDel('parties','id',id);toast('✓ حذف شد');await loadParties('all')}
+  catch(e){toast('خطا حذف: '+e.message+' (احتمالاً در فاکتوری استفاده شده)','err')}
+}
+
+// ═══ EMPLOYEES ═══
+async function loadEmps(){
+  try{EMPS=await db('GET','employees',{ord:'emp_code.asc'});renderEmps()}
+  catch(e){toast('خطا پرسنل','err')}
+}
+function renderEmps(){
+  const tb=document.getElementById('emp-tb');if(!tb)return;
+  tb.innerHTML=EMPS.length?EMPS.map(e=>`<tr>
+    <td class="mono" style="color:var(--teal)">${e.emp_code}</td>
+    <td><b>${e.name}</b></td>
+    <td>${e.position||'—'}</td>
+    <td>${e.department||'—'}</td>
+    <td style="color:var(--amber)">₺${(+e.base_salary||0).toLocaleString()}</td>
+    <td style="color:var(--tx2)">₺${(+e.daily_rate||0).toLocaleString()}</td>
+    <td><span class="chip c-i">${e.food_discount_pct||20}%</span></td>
+    <td><span class="cpill">${e.coa_payable||'—'}</span></td>
+    <td>${chip(e.status==='active'?'active':'inactive',e.status==='active'?'فعال':'غیرفعال')}</td>
+    <td><div style="display:flex;gap:4px"><button class="btn" onclick="editEmp('${e.id}')" style="padding:3px 8px"><i class="ti ti-edit"></i></button><button class="btn brd" onclick="delEmp('${e.id}')" style="padding:3px 8px"><i class="ti ti-trash"></i></button></div></td>
+  </tr>`).join(''):'<tr><td colspan="10" class="empty">هنوز پرسنلی تعریف نشده</td></tr>';
+}
+async function openEmpM(){
+  eID.emp=null;['e-name','e-pos'].forEach(id=>document.getElementById(id).value='');
+  ['e-sal','e-daily'].forEach(id=>document.getElementById(id).value='0');
+  document.getElementById('e-disc').value='20';document.getElementById('e-sgk').value='14';
+  document.getElementById('e-esgk').value='20.5';document.getElementById('e-itax').value='15';
+  document.getElementById('e-start').value=new Date().toISOString().slice(0,10);
+  const no=await nxt('employee');document.getElementById('e-code').value=no;
+  const n=EMPS.length+1;
+  document.getElementById('e-pay-coa').textContent=`2.2.${String(n).padStart(3,'0')}`;
+  document.getElementById('e-exp-coa').textContent=`5.2.1.${String(n).padStart(3,'0')}`;
+  document.getElementById('empm-t').textContent='پرسنل جدید';
+  om('empm');
+}
+function editEmp(id){
+  const e=EMPS.find(x=>x.id===id);if(!e)return;eID.emp=id;
+  document.getElementById('empm-t').textContent='ویرایش: '+e.name;
+  document.getElementById('e-code').value=e.emp_code;document.getElementById('e-name').value=e.name;
+  document.getElementById('e-pos').value=e.position||'';document.getElementById('e-dept').value=e.department||'کافه';
+  document.getElementById('e-sal').value=e.base_salary;document.getElementById('e-daily').value=e.daily_rate||0;
+  document.getElementById('e-disc').value=e.food_discount_pct||20;document.getElementById('e-sgk').value=e.sgk_rate||14;
+  document.getElementById('e-esgk').value=e.employer_sgk_rate||20.5;document.getElementById('e-itax').value=e.income_tax_rate||15;
+  document.getElementById('e-start').value=e.start_date||'';document.getElementById('e-cur').value=e.currency||'TRY';
+  document.getElementById('e-pay-coa').textContent=e.coa_payable||'—';
+  document.getElementById('e-exp-coa').textContent=e.coa_expense||'—';
+  om('empm');
+}
+async function saveEmp(){
+  const name=document.getElementById('e-name').value.trim();if(!name){toast('نام الزامی','warn');return}
+  const code=document.getElementById('e-code').value;
+  const n=EMPS.length+1;
+  const payCoa=eID.emp?(EMPS.find(x=>x.id===eID.emp)?.coa_payable||`2.2.${String(n).padStart(3,'0')}`):document.getElementById('e-pay-coa').textContent;
+  const expCoa=eID.emp?(EMPS.find(x=>x.id===eID.emp)?.coa_expense||`5.2.1.${String(n).padStart(3,'0')}`):document.getElementById('e-exp-coa').textContent;
+  const b={emp_code:code,name,position:document.getElementById('e-pos').value||null,department:document.getElementById('e-dept').value,base_salary:+document.getElementById('e-sal').value||0,daily_rate:+document.getElementById('e-daily').value||0,currency:document.getElementById('e-cur').value,sgk_rate:+document.getElementById('e-sgk').value||14,employer_sgk_rate:+document.getElementById('e-esgk').value||20.5,income_tax_rate:+document.getElementById('e-itax').value||15,food_discount_pct:+document.getElementById('e-disc').value||20,start_date:document.getElementById('e-start').value||null,coa_payable:payCoa,coa_expense:expCoa,status:'active'};
+  try{
+    if(eID.emp){await dbU('employees','id',eID.emp,b);toast('✓ بروزرسانی شد')}
+    else{
+      // ساخت COA پرداختنی پرسنل
+      await db('POST','coa',{b:{code:payCoa,parent_code:'2.2',name_fa:`پرداختنی — ${name}`,name_tr:`${name} Alacağı`,account_type:'liability',normal_balance:'credit',is_group:false,level:3,is_system:false}}).catch(()=>{});
+      // ساخت COA هزینه حقوق پرسنل
+      await db('POST','coa',{b:{code:expCoa,parent_code:'5.2.1',name_fa:`حقوق — ${name}`,name_tr:`${name} Maaşı`,account_type:'expense',normal_balance:'debit',is_group:false,level:4,is_system:false}}).catch(()=>{});
+      // ساخت طرف حساب
+      const partyCode=await nxt('employee');
+      const [party]=await db('POST','parties',{b:{code:partyCode,name,party_type:'employee',coa_code:payCoa,is_active:true}});
+      b.party_id=party.id;
+      await db('POST','employees',{b});toast(`✓ ${name} (${code}) — COA: ${payCoa}`);
+    }
+    cm('empm');await loadEmps();await loadCOA(false);
+  }catch(e){toast('خطا: '+e.message,'err')}
+}
+// ═══ IMPORT/EXPORT پرسنل ═══
+async function importEmps(){
+  const text=await readClipboard();if(!text.trim()){toast('چیزی برای ورود نیست','warn');return}
+  const rows=parsePaste(text);let ok=0,fail=0;
+  for(const r of rows){
+    const name=(r[0]||'').trim();if(!name)continue;
+    if(EMPS.find(e=>e.name.trim()===name)){fail++;continue}
+    const pos=(r[1]||'').trim();
+    const salary=parseFloat(r[2])||0;
+    const daily=parseFloat(r[3])||(salary?Math.round(salary/30):0);
+    const n=EMPS.length+1+ok;
+    const payCoa=`2.2.${String(n).padStart(3,'0')}`;
+    const expCoa=`5.2.1.${String(n).padStart(3,'0')}`;
+    const code='EMP-'+String(n).padStart(4,'0');
+    try{
+      await db('POST','coa',{b:{code:payCoa,parent_code:'2.2',name_fa:`پرداختنی — ${name}`,account_type:'liability',normal_balance:'credit',is_group:false,level:3,is_system:false}}).catch(()=>{});
+      await db('POST','coa',{b:{code:expCoa,parent_code:'5.2.1',name_fa:`حقوق — ${name}`,account_type:'expense',normal_balance:'debit',is_group:false,level:4,is_system:false}}).catch(()=>{});
+      const pCode=await nxt('employee');
+      const [party]=await db('POST','parties',{b:{code:pCode,name,party_type:'employee',coa_code:payCoa,is_active:true}}).catch(()=>[{}]);
+      const [ne]=await db('POST','employees',{b:{emp_code:code,name,position:pos||null,department:'کافه',base_salary:salary,daily_rate:daily,currency:'TRY',sgk_rate:14,employer_sgk_rate:20.5,income_tax_rate:15,food_discount_pct:20,coa_payable:payCoa,coa_expense:expCoa,party_id:party?.id||null,status:'active'}});
+      EMPS.push(ne);ok++;
+    }catch(e){fail++}
+  }
+  await loadEmps();await loadCOA(false);
+  toast(`✓ ${ok} پرسنل اضافه شد${fail?` | ${fail} رد شد`:''}`);
+}
+function exportEmps(){
+  exportExcel('پرسنل',['کد','نام','سمت','بخش','حقوق پایه','نرخ روزانه','تخفیف غذا','COA پرداختنی'],
+    EMPS.map(e=>[e.emp_code,e.name,e.position||'',e.department||'',e.base_salary,e.daily_rate,e.food_discount_pct+'%',e.coa_payable]));
+}
+function tmplEmps(){downloadTemplate('فرمت_پرسنل',['نام','سمت','حقوق پایه','نرخ روزانه'],[['کاظم احمدی','باریستا','30000','1000'],['سارا محمدی','آشپز','35000','1200']])}
+async function delEmp(id){
+  const e=EMPS.find(x=>x.id===id);if(!e)return;
+  if(!confirm(`حذف پرسنل «${e.name}»؟`))return;
+  try{
+    await dbDel('employees','id',id);
+    if(e.coa_payable)await dbDel('coa','code',e.coa_payable).catch(()=>{});
+    if(e.coa_expense)await dbDel('coa','code',e.coa_expense).catch(()=>{});
+    if(e.party_id)await dbDel('parties','id',e.party_id).catch(()=>{});
+    toast('✓ حذف شد');await loadEmps();await loadCOA(false);
+  }catch(e){toast('خطا حذف: '+e.message,'err')}
+}
+
+// ═══ COA ═══
+const TCL={asset:'var(--blue)',liability:'var(--red)',equity:'var(--purple)',revenue:'var(--teal)',expense:'var(--amber)'};
+const MHN={asset:'بدهکار (دارایی)',liability:'بستانکار (بدهی)',equity:'بستانکار (حقوق)',revenue:'بستانکار (درآمد)',expense:'بدهکار (هزینه)'};
+async function loadCOA(render){
+  try{COA=await db('GET','coa',{ord:'code.asc'});if(render)renderCOA()}
+  catch(e){toast('خطا COA','err')}
+}
+function renderCOA(){
+  const el=document.getElementById('coa-tree');if(!el)return;el.innerHTML='';
+  COA.forEach(a=>{
+    const d=document.createElement('div');
+    d.style.cssText=`display:flex;align-items:center;gap:8px;padding:6px ${(a.level-1)*18}px 6px 10px;border-bottom:1px solid var(--bd);font-size:12px;cursor:pointer;${a.is_group?'font-weight:600;background:var(--s2)':''}`;
+    d.innerHTML=`<span style="width:7px;height:7px;border-radius:50%;background:${TCL[a.account_type]||'#888'};flex-shrink:0;display:inline-block"></span>
+    <span style="font-family:monospace;font-size:11px;color:var(--tx3);min-width:75px">${a.code}</span>
+    <span style="flex:1">${a.name_fa}</span>
+    <span style="font-size:10px;color:var(--tx3)">${MHN[a.account_type]||''}</span>
+    ${a.is_group?'<span class="chip c-i" style="font-size:9px">گروه</span>':''}`;
+    d.onclick=()=>fillCF(a);el.appendChild(d);
+  });
+  const s=document.getElementById('cf-par');s.innerHTML='<option value="">— ریشه —</option>';
+  COA.filter(a=>a.is_group).forEach(a=>{const o=document.createElement('option');o.value=a.code;o.textContent=a.code+' — '+a.name_fa;s.appendChild(o)});
+}
+function fillCF(a){document.getElementById('cf-code').value=a.code;document.getElementById('cf-par').value=a.parent_code||'';document.getElementById('cf-fa').value=a.name_fa;document.getElementById('cf-tr').value=a.name_tr||'';document.getElementById('cf-type').value=a.account_type;document.getElementById('cf-bal').value=a.normal_balance;document.getElementById('cf-grp').value=a.is_group?'true':'false';document.getElementById('cf-title').textContent='ویرایش: '+a.name_fa;autoNB()}
+function clearCF(){['cf-code','cf-fa','cf-tr'].forEach(id=>document.getElementById(id).value='');document.getElementById('cf-title').textContent='حساب جدید';autoNB()}
+function autoNB(){const t=document.getElementById('cf-type').value;document.getElementById('cf-bal').value=['asset','expense'].includes(t)?'debit':'credit';document.getElementById('cf-mh').textContent=MHN[t]||'';document.getElementById('cf-mh').style.color=TCL[t]||''}
+async function saveCOA(){
+  const code=document.getElementById('cf-code').value.trim(),fa=document.getElementById('cf-fa').value.trim();
+  if(!code||!fa){toast('کد و نام الزامی','warn');return}
+  const pc=document.getElementById('cf-par').value||null,par=pc?COA.find(a=>a.code===pc):null;
+  const b={code,parent_code:pc,name_fa:fa,name_tr:document.getElementById('cf-tr').value||null,account_type:document.getElementById('cf-type').value,normal_balance:document.getElementById('cf-bal').value,is_group:document.getElementById('cf-grp').value==='true',level:par?(par.level+1):1,is_active:true};
+  try{await db('POST','coa',{b});toast('✓ حساب ثبت شد');clearCF();await loadCOA(true)}
+  catch(e){toast('خطا: '+e.message,'err')}
+}
+
+document.getElementById('p-type').addEventListener('change',updatePartyCOA);
+document.getElementById('cf-type').addEventListener('change',autoNB);
+conn();
+
+
+// ═══ INIT ═══
+const saved=sessionStorage.getItem('hesabyar_user');
+if(saved){CURRENT_USER=JSON.parse(saved);startApp()}
+// اگه لاگین نکرده، صفحه ورود داخلی نمایش داده میشه (login-screen)
+</script>
+</body>
+</html>
